@@ -1,103 +1,171 @@
-import Image from "next/image";
+'use client';
+
+import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="bg-gray-100">
+      {/* Hero Section */}
+      <div
+        className="relative w-full h-[900px] bg-cover bg-center flex items-center justify-center"
+        style={{
+          backgroundImage:
+            "url(https://demo.cmssuperheroes.com/themeforest/chemlabs/wp-content/uploads/chemlabs-slider-1.jpg)",
+        }}
+      >
+        <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
+        <div className="relative text-white text-center">
+          <h1 className="text-5xl font-bold drop-shadow-lg">
+            BIENVENIDO A AUROLAB
+          </h1>
+          <button className="mt-6 px-6 py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
+            Solicitar una Cotización
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+
+      {/* Servicios */}
+      <div className="container mx-auto mt-12 px-4">
+        <h2 className="text-center text-3xl font-bold text-blue-700 uppercase">
+          Atención a Nivel Nacional
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          {[
+            {
+              title: "Análisis Fisicoquímico",
+              description:
+                "Evaluación de propiedades químicas y físicas en muestras.",
+              image:
+                "/fisicoquimico.jpg",
+              button: "→ Solicitar Prueba",
+            },
+            {
+              title: "Análisis Microbiológico",
+              description: "Detección de microorganismos en diversas muestras.",
+              image:
+                "/microbiologico.jpg",
+              button: "→ Registro",
+            },
+            {
+              title: "Monitoreo Ambiental",
+              description: "Control y evaluación de calidad ambiental.",
+              image:
+                "/monitoreo.jpg",
+              button: "→ Agendar Cita",
+            },
+          ].map((service, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-3xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <div className="relative">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={400}
+                  height={300}
+                  className="w-full h-[300px] object-cover"
+                />
+                <svg
+                  className="absolute bottom-0 left-0 w-full"
+                  viewBox="0 0 500 50"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0,50 C150,0 350,0 500,50 L500,50 L0,50 Z"
+                    className="fill-white"
+                  ></path>
+                </svg>
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-bold text-blue-900">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 mt-2">{service.description}</p>
+                <button className="mt-4 px-4 py-2 text-blue-900 border border-blue-900 rounded-lg hover:bg-blue-900 hover:text-white transition">
+                  {service.button}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Sección Adicional */}
+      <div className="max-w-6xl mx-auto p-6">
+        <h2 className="text-center text-3xl font-bold text-blue-700 uppercase">
+          Más Servicios
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          {[
+            {
+              title: "Innovación en Vacunas a Gran Velocidad",
+              description:
+                "La seguridad es clave en este proceso, por lo que identificamos y discutimos factores clave en el desarrollo de vacunas.",
+              image: "/certificado.jpg",
+              tag: "Vacunas",
+              tagColor: "bg-blue-500",
+            },
+            {
+              title: "Aumento de la Inscripción en Ensayos Clínicos",
+              description:
+                "Brindamos soporte en el reclutamiento de pacientes para ensayos clínicos, asegurando calidad y precisión.",
+              image: "/info.jpg",
+              tag: "Investigación",
+              tagColor: "bg-yellow-500",
+            },
+            {
+              title: "Incorporando la Voz del Paciente",
+              description:
+                "Ayudamos a integrar la perspectiva del paciente en procesos de reclutamiento y desarrollo médico.",
+              image: "/hoja.jpg",
+              tag: "Participación",
+              tagColor: "bg-teal-500",
+            },
+            {
+              title: "Cerrando la Brecha en Oncología Pediátrica",
+              description:
+                "El entorno regulatorio ayuda a los patrocinadores con esfuerzos complejos en oncología pediátrica.",
+              iframe: "https://www.youtube.com/embed/TCkE9s-sku8",
+              tag: "Pediatría",
+              tagColor: "bg-green-500",
+            },
+          ].map((service, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              {service.iframe ? (
+                <iframe
+                  className="w-full h-72"
+                  src={service.iframe}
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={500}
+                  height={300}
+                  className="w-full h-75 object-cover"
+                />
+              )}
+              <div className="p-4">
+                <span
+                  className={`${service.tagColor} text-white text-xs font-bold px-3 py-1 rounded-full`}
+                >
+                  {service.tag}
+                </span>
+                <h3 className="text-lg font-semibold mt-2">{service.title}</h3>
+                <p className="text-gray-600 text-sm mt-1">{service.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }
