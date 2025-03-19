@@ -12,11 +12,11 @@ export const links = {
       sublinks: [
         {
           name: "Análisis Químico",
-          href: "/analisis-laboratorio/quimico",
+          href: "/analisis/quimico",
         },
         {
           name: "Análisis Microbiológico",
-          href: "/analisis-laboratorio/microbiologico",
+          href: "/analisis/microbiologico",
         },
       ],
     },
@@ -32,6 +32,12 @@ export const links = {
           href: "/servicio-cliente/repositorio-informes",
         },
       ],
+    },
+    search: {
+      name: "Buscar",
+      href: "#cms-search-popup",
+      className: "cms-modal h-btn-search menu-color cms-transition",
+      iconClass: "cmsi-search",
     },
   };
   

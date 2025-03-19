@@ -5,7 +5,7 @@ const Footer = () => {
           {/* Logo y Nombre */}
           <div>
             <img src="/img/aurolab.jpg" alt="Logo" className="w-32 mb-4" />
-            <h2 className="text-2xl font-bold">Chemlabs</h2>
+            <h2 className="text-2xl font-bold">Aurolab</h2>
           </div>
   
           {/* About Us */}
@@ -42,7 +42,7 @@ const Footer = () => {
   
         {/* Footer Bottom */}
         <div className="border-t bg-white border-gray-900 mt-10 pt-6 text-center text-gray-400">
-          <p>©2025 Chemlabs, All Rights Reserved.</p>
+          <p>©2025 AuroLab, All Rights Reserved.</p>
           <div className="flex justify-center space-x-6 mt-4">
             <a href="#" className="hover:text-blue-900">Privacy Policy</a>
             <a href="#" className="hover:text-blue-900">Terms of Use</a>
