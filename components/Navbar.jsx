@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Phone, MapPin, Clock, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { Phone, MapPin, Clock, Menu, X, Search } from "lucide-react"; // Importa el ícono de búsqueda
 import { links } from "@/data/links";
 import { flushSync } from 'react-dom';
 
@@ -63,11 +64,20 @@ const Navbar = () => {
       </div>
 
       {/* NAVBAR PRINCIPAL */}
-      <nav className="bg-white shadow-md p-4">
+      <nav className="bg-white shadow-md p-4 relative z-50">
         <div className="container mx-auto flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-900">
-            AuroLab
+          {/* Logo y Nombre */}
+          <Link href="/" className="flex items-center space-x-2">
+            {/* Logo */}
+            <Image
+              src="/aurolab.jpg" // Ruta de la imagen del logo
+              alt="Logo de AuroLab"
+              width={200} // Ancho del logo
+              height={200} // Alto del logo
+              className="w-24 h-16" // Tamaño del logo
+            />
+            {/* Nombre */}
+            <span className="text-2xl font-bold text-blue-900">AuroLab</span>
           </Link>
 
           {/* Menú para pantallas grandes */}
@@ -76,25 +86,28 @@ const Navbar = () => {
               <li key={index} className="relative">
                 {link.sublinks ? (
                   <>
-                    {/* Parte del nombre del enlace (redirige a la página) */}
-                    <Link
-                      href={link.href || "#"} // Si no hay href, no redirige
-                      className="hover:text-blue-600"
-                    >
-                      {link.name}
-                    </Link>
+                    {/* Contenedor para el enlace y la flecha */}
+                    <div className="flex items-center">
+                      {/* Parte del nombre del enlace (redirige a la página) */}
+                      <Link
+                        href={link.href || "#"} // Si no hay href, no redirige
+                        className="hover:text-blue-600"
+                      >
+                        {link.name}
+                      </Link>
 
-                    {/* Flecha para desplegar el submenú */}
-                    <button
-                      className="hover:text-blue-600 ml-1"
-                      onClick={() => toggleDropdown(link.name)}
-                    >
-                      ▼
-                    </button>
+                      {/* Flecha para desplegar el submenú */}
+                      <button
+                        className="hover:text-blue-600 ml-1"
+                        onClick={() => toggleDropdown(link.name)}
+                      >
+                        ▼
+                      </button>
+                    </div>
 
                     {/* Submenú desplegable */}
                     {isOpen[link.name] && (
-                      <ul className="absolute bg-white shadow-md mt-2 py-2 w-48">
+                      <ul className="absolute bg-white shadow-md mt-2 py-2 w-48 z-50">
                         {link.sublinks.map((sublink, subIndex) => (
                           <li key={subIndex}>
                             <Link
@@ -109,6 +122,10 @@ const Navbar = () => {
                       </ul>
                     )}
                   </>
+                ) : link.href === "#cms-search-popup" ? ( // Si es el botón de búsqueda, renderiza el ícono
+                  <a href={link.href} className={link.className}>
+                    <Search size={22} className="text-blue-900 hover:text-blue-600 transition" />
+                  </a>
                 ) : (
                   // Enlace sin submenú
                   <Link href={link.href} className="hover:text-blue-600">
@@ -162,6 +179,10 @@ const Navbar = () => {
                         </ul>
                       )}
                     </>
+                  ) : link.href === "#cms-search-popup" ? ( // Si es el botón de búsqueda, renderiza el ícono
+                    <a href={link.href} className={link.className}>
+                      <Search size={22} className="text-blue-900 hover:text-blue-600 transition" />
+                    </a>
                   ) : (
                     // Enlace sin submenú
                     <Link href={link.href} className="hover:text-blue-600">

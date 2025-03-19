@@ -13,7 +13,7 @@ export default function AnalisisLaboratorio() {
     <main className="bg-gray-100">
       {/* Hero Section */}
       <div
-        className="relative w-full h-[700px] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[600px] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: "url(/analisis-lab2.jpg)", // Cambia esta imagen por la que desees
         }}
@@ -74,8 +74,8 @@ export default function AnalisisLaboratorio() {
               <Image
                 src={item.image}
                 alt={item.title}
-                width={600}
-                height={400}
+                width={800}
+                height={500}
                 className="w-full h-auto rounded-lg shadow-lg"
               />
             </motion.div>
