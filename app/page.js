@@ -1,8 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Home() {
+  // Referencia para detectar cuándo la sección "Más Servicios" está en la vista
+  const serviciosRef = useRef(null);
+  const isInView = useInView(serviciosRef, { once: true, margin: "-100px" });
+
   return (
     <main className="bg-gray-100">
       {/* Hero Section */}
@@ -36,22 +42,19 @@ export default function Home() {
               title: "Análisis Fisicoquímico",
               description:
                 "Evaluación de propiedades químicas y físicas en muestras.",
-              image:
-                "/fisicoquimico.jpg",
+              image: "/fisicoquimico.jpg",
               button: "→ Solicitar Prueba",
             },
             {
               title: "Análisis Microbiológico",
               description: "Detección de microorganismos en diversas muestras.",
-              image:
-                "/microbiologico.jpg",
+              image: "/microbiologico.jpg",
               button: "→ Registro",
             },
             {
               title: "Monitoreo Ambiental",
               description: "Control y evaluación de calidad ambiental.",
-              image:
-                "/monitoreo.jpg",
+              image: "/monitoreo.jpg",
               button: "→ Agendar Cita",
             },
           ].map((service, index) => (
@@ -93,7 +96,7 @@ export default function Home() {
       </div>
 
       {/* Sección Adicional */}
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl mx-auto p-6" ref={serviciosRef}>
         <h2 className="text-center text-3xl font-bold text-blue-700 uppercase">
           Más Servicios
         </h2>
@@ -133,8 +136,11 @@ export default function Home() {
               tagColor: "bg-green-500",
             },
           ].map((service, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -300 : 300 }} // Estado inicial: invisible y desplazado horizontalmente
+              animate={isInView ? { opacity: 1, x: 0 } : {}} // Estado animado: visible y en su posición original
+              transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }} // Retraso, duración y suavizado de la animación
               className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {service.iframe ? (
@@ -162,7 +168,7 @@ export default function Home() {
                 <h3 className="text-lg font-semibold mt-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm mt-1">{service.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -9,6 +9,7 @@ export const links = {
     },
     analisisLaboratorio: {
       name: "Análisis de Laboratorio",
+      href: "/analisis",
       sublinks: [
         {
           name: "Análisis Químico",
