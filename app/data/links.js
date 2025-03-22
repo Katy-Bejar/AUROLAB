@@ -34,10 +34,5 @@ export const links = {
         },
       ],
     },
-    search: {
-      name: "Buscar",
-      href: "#cms-search-popup",
-      className: "cms-modal h-btn-search menu-color cms-transition",
-      iconClass: "cmsi-search",
-    },
+   
   };
