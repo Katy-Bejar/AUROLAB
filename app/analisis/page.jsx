@@ -5,7 +5,6 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 export default function AnalisisLaboratorio() {
-  // Referencia para detectar cuándo la sección está en la vista
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
@@ -15,7 +14,8 @@ export default function AnalisisLaboratorio() {
       <div
         className="relative w-full h-[600px] bg-cover bg-center flex items-center justify-center"
         style={{
-          backgroundImage: "url(/analisis-lab2.jpg)", // Cambia esta imagen por la que desees
+          backgroundImage: "url(/analisis-lab4.jpg)", // Cambia esta imagen por la que desees
+          clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)', // Curva en la parte inferior
         }}
       >
         <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
@@ -59,33 +59,40 @@ export default function AnalisisLaboratorio() {
         ].map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }} // Estado inicial: invisible y desplazado horizontalmente
-            animate={isInView ? { opacity: 1, x: 0 } : {}} // Estado animado: visible y en su posición original
-            transition={{ delay: index * 0.3, duration: 0.6, ease: "easeOut" }} // Retraso, duración y suavizado de la animación
+            initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: index * 0.2, duration: 0.6, ease: "easeOut" }}
             className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 my-12`}
           >
-            {/* Imagen */}
+            {/* Imagen con efecto de hover */}
             <motion.div
-              className="flex-1 w-full md:w-auto"
-              initial={{ opacity: 0, x: index % 2 === 0 ? -200 : 200 }} // Estado inicial: imagen fuera de la pantalla
-              animate={isInView ? { opacity: 1, x: 0 } : {}} // Estado animado: imagen en su posición
-              transition={{ delay: index * 0.3 + 0.1, duration: 0.6, ease: "easeOut" }} // Retraso adicional para la imagen
+              className="flex-1 w-full md:w-auto overflow-hidden rounded-lg shadow-lg"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -200 : 200 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: index * 0.2 + 0.1, duration: 0.05, ease: "easeOut" }} // Transición combinada
+              whileHover={{ scale: 1.03 }} // Efecto de escala más rápido
             >
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={800}
-                height={500}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
+              <motion.div
+                className="w-full h-full"
+                whileHover={{ filter: "brightness(0.8)" }} // Oscurece la imagen al hacer hover
+                transition={{ duration: 0.2 }} // Transición más rápida
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={800}
+                  height={500}
+                  className="w-full h-auto rounded-lg"
+                />
+              </motion.div>
             </motion.div>
 
             {/* Texto */}
             <motion.div
               className="flex-1 w-full md:w-auto"
-              initial={{ opacity: 0, x: index % 2 === 0 ? 200 : -200 }} // Estado inicial: texto fuera de la pantalla
-              animate={isInView ? { opacity: 1, x: 0 } : {}} // Estado animado: texto en su posición
-              transition={{ delay: index * 0.3 + 0.2, duration: 0.6, ease: "easeOut" }} // Retraso adicional para el texto
+              initial={{ opacity: 0, x: index % 2 === 0 ? 200 : -200 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: index * 0.2 + 0.2, duration: 0.6, ease: "easeOut" }}
             >
               <h2 className="text-2xl font-bold text-blue-900">{item.title}</h2>
               <p className="text-gray-600 mt-4">{item.description}</p>

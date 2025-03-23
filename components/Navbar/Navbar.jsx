@@ -11,8 +11,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState({});
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [hasScrolledOnce, setHasScrolledOnce] = useState(false); // Nuevo estado para controlar el primer scroll
 
   const toggleDropdown = (key) => {
     setIsOpen((prev) => ({ [key]: !prev[key] }));
@@ -22,25 +22,21 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
-  // Ocultar navbar al hacer scroll hacia abajo
+  // Efecto para manejar el scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      if (currentScrollY <= 0) {
-        setShowNavbar(true);
-      } else if (currentScrollY > lastScrollY) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
+      // Solo reducir el navbar la primera vez que se hace scroll
+      if (currentScrollY > 100 && !hasScrolledOnce) {
+        setIsScrolled(true);
+        setHasScrolledOnce(true); // Marcar que ya se ha hecho scroll
       }
-
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, [hasScrolledOnce]); // Dependencia para evitar múltiples actualizaciones
 
   return (
     <>
@@ -60,15 +56,22 @@ const Navbar = () => {
 
       {/* NAVBAR PRINCIPAL */}
       <nav
-        className={`bg-white shadow-md p-4 sticky top-0 z-50 transition-transform duration-300 ${
-          showNavbar ? 'translate-y-0' : '-translate-y-full'
+        className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${
+          isScrolled ? 'py-2' : 'py-4' // Cambia el padding vertical al hacer scroll
         }`}
       >
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo + Nombre */}
           <Link href="/" className="flex items-center space-x-2">
-            <Image src="/aurolab.jpg" alt="Logo de AuroLab" width={200} height={200} className="w-24 h-16" />
-          
+            <Image
+              src="/aurolab.jpg"
+              alt="Logo de AuroLab"
+              width={200}
+              height={200}
+              className={`transition-all duration-300 ${
+                isScrolled ? 'w-16 h-12' : 'w-24 h-16' // Cambia el tamaño del logo al hacer scroll
+              }`}
+            />
           </Link>
 
           {/* Menú principal (Desktop) */}
@@ -153,4 +156,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

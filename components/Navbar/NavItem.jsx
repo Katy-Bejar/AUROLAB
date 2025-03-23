@@ -1,18 +1,59 @@
 import Link from 'next/link';
 import { Search } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const NavItem = ({ link, isOpen, toggle, close, isMobile = false }) => {
   const hasSubmenu = link.sublinks && link.sublinks.length > 0;
   const [isHovered, setIsHovered] = useState(false);
+  const submenuRef = useRef(null); // Referencia para el submenú
+  const timeoutRef = useRef(null); // Referencia para el timeout
 
   const shouldShowDropdown = isMobile ? isOpen : isHovered;
+
+  // Función para manejar el evento onMouseEnter
+  const handleMouseEnter = () => {
+    if (!isMobile) {
+      setIsHovered(true);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current); // Limpia el timeout si existe
+      }
+    }
+  };
+
+  // Función para manejar el evento onMouseLeave
+  const handleMouseLeave = () => {
+    if (!isMobile) {
+      // Cierra el submenú después de un pequeño retraso
+      timeoutRef.current = setTimeout(() => {
+        setIsHovered(false);
+      }, 200); // Ajusta el retraso según sea necesario
+    }
+  };
+
+  // Función para manejar el evento onMouseEnter del submenú
+  const handleSubmenuMouseEnter = () => {
+    if (!isMobile) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current); // Limpia el timeout si existe
+      }
+    }
+  };
+
+  // Función para manejar el evento onMouseLeave del submenú
+  const handleSubmenuMouseLeave = () => {
+    if (!isMobile) {
+      // Cierra el submenú después de un pequeño retraso
+      timeoutRef.current = setTimeout(() => {
+        setIsHovered(false);
+      }, 200); // Ajusta el retraso según sea necesario
+    }
+  };
 
   return (
     <li
       className="relative"
-      onMouseEnter={() => !isMobile && setIsHovered(true)}
-      onMouseLeave={() => !isMobile && setIsHovered(false)}
+      onMouseEnter={handleMouseEnter} // Usa la función personalizada para onMouseEnter
+      onMouseLeave={handleMouseLeave} // Usa la función personalizada para onMouseLeave
     >
       {hasSubmenu ? (
         <>
@@ -37,11 +78,14 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false }) => {
           {/* Submenú */}
           {shouldShowDropdown && (
             <ul
+              ref={submenuRef} // Asigna la referencia al submenú
               className={`${
                 isMobile
                   ? 'pl-4 mt-2 space-y-2'
                   : 'absolute bg-white shadow-lg mt-2 py-2 w-52 z-50 rounded-lg'
               }`}
+              onMouseEnter={handleSubmenuMouseEnter} // Mantén el submenú abierto cuando el cursor está sobre él
+              onMouseLeave={handleSubmenuMouseLeave} // Cierra el submenú cuando el cursor lo deja
             >
               {link.sublinks.map((sublink, idx) => (
                 <li key={idx}>
