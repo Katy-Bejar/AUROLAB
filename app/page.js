@@ -13,18 +13,18 @@ export default function Home() {
     <main className="bg-gray-100">
       {/* Hero Section */}
       <div
-        className="relative w-full h-[900px] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[400px] md:h-[600px] lg:h-[900px] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage:
             "url(https://demo.cmssuperheroes.com/themeforest/chemlabs/wp-content/uploads/chemlabs-slider-1.jpg)",
         }}
       >
         <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
-        <div className="relative text-white text-center">
-          <h1 className="text-5xl font-bold drop-shadow-lg">
+        <div className="relative text-white text-center px-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
             BIENVENIDO A AUROLAB
           </h1>
-          <button className="mt-6 px-6 py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
+          <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
             Solicitar una Cotización
           </button>
         </div>
@@ -32,7 +32,7 @@ export default function Home() {
 
       {/* Servicios */}
       <div className="container mx-auto mt-12 px-4">
-        <h2 className="text-center text-3xl font-bold text-blue-700 uppercase">
+        <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase">
           Atención a Nivel Nacional
         </h2>
 
@@ -68,7 +68,7 @@ export default function Home() {
                   alt={service.title}
                   width={400}
                   height={300}
-                  className="w-full h-[300px] object-cover"
+                  className="w-full h-[200px] md:h-[300px] object-cover"
                 />
                 <svg
                   className="absolute bottom-0 left-0 w-full"
@@ -81,12 +81,14 @@ export default function Home() {
                   ></path>
                 </svg>
               </div>
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-blue-900">
+              <div className="p-4 md:p-6 text-center">
+                <h3 className="text-lg md:text-xl font-bold text-blue-900">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mt-2">{service.description}</p>
-                <button className="mt-4 px-4 py-2 text-blue-900 border border-blue-900 rounded-lg hover:bg-blue-900 hover:text-white transition">
+                <p className="text-sm md:text-base text-gray-600 mt-2">
+                  {service.description}
+                </p>
+                <button className="mt-4 px-3 py-1 md:px-4 md:py-2 text-blue-900 border border-blue-900 rounded-lg hover:bg-blue-900 hover:text-white transition">
                   {service.button}
                 </button>
               </div>
@@ -96,8 +98,8 @@ export default function Home() {
       </div>
 
       {/* Sección Adicional */}
-      <div className="max-w-6xl mx-auto p-6" ref={serviciosRef}>
-        <h2 className="text-center text-3xl font-bold text-blue-700 uppercase">
+      <div className="max-w-6xl mx-auto p-4 md:p-6" ref={serviciosRef}>
+        <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase">
           Más Servicios
         </h2>
 
@@ -145,7 +147,7 @@ export default function Home() {
             >
               {service.iframe ? (
                 <iframe
-                  className="w-full h-72"
+                  className="w-full h-48 md:h-72"
                   src={service.iframe}
                   frameBorder="0"
                   allowFullScreen
@@ -156,7 +158,7 @@ export default function Home() {
                   alt={service.title}
                   width={500}
                   height={300}
-                  className="w-full h-75 object-cover"
+                  className="w-full h-48 md:h-72 object-cover"
                 />
               )}
               <div className="p-4">
