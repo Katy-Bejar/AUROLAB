@@ -27,10 +27,11 @@ export const links = {
     },
     servicioCliente: {
       name: "Servicio al Cliente",
+      href: "/servicio-cliente",
       sublinks: [
         {
           name: "Repositorio de Informes",
-          href: "/servicio-cliente/repositorio-informes",
+          href: "/servicio-cliente/informes",
         },
       ],
     },

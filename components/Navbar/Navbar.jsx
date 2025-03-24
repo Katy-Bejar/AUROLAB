@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hasScrolledOnce, setHasScrolledOnce] = useState(false); // Nuevo estado para controlar el primer scroll
+  const [hasScrolledOnce, setHasScrolledOnce] = useState(false);
 
   const toggleDropdown = (key) => {
     setIsOpen((prev) => ({ [key]: !prev[key] }));
@@ -22,34 +22,44 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
+  // Función para cerrar el menú móvil
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   // Efecto para manejar el scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Solo reducir el navbar la primera vez que se hace scroll
-      if (currentScrollY > 100 && !hasScrolledOnce) {
+  
+      // Si el scroll está en la parte superior de la página
+      if (currentScrollY === 0) {
+        setIsScrolled(false);
+        setHasScrolledOnce(false); // Opcional: restablecer el estado de "ha hecho scroll"
+      }
+      // Si el scroll es mayor a 50 y es la primera vez que se hace scroll
+      else if (currentScrollY > 50 && !hasScrolledOnce) {
         setIsScrolled(true);
-        setHasScrolledOnce(true); // Marcar que ya se ha hecho scroll
+        setHasScrolledOnce(true);
       }
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasScrolledOnce]); // Dependencia para evitar múltiples actualizaciones
+  }, [hasScrolledOnce]);
 
   return (
     <>
       {/* NAVBAR SUPERIOR */}
       <div className="bg-blue-900 text-white text-sm py-2 px-4">
         <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             <Phone size={16} className="text-green-400" />
-            <span>Celular: 941 678 446</span>
+            <span className="hidden sm:inline">Celular: 941 678 446</span>
             <MapPin size={16} className="text-green-400" />
-            <span>Ubicación: Av. Canadá, entre Rosa Luz y Santa Rosa</span>
+            <span className="hidden sm:inline">Ubicación: Av. Canadá, entre Rosa Luz y Santa Rosa</span>
             <Clock size={16} className="text-green-400" />
-            <span>Lun - Vie: 9:00am - 6:00pm</span>
+            <span className="hidden sm:inline">Lun - Vie: 9:00am - 6:00pm</span>
           </div>
         </div>
       </div>
@@ -57,20 +67,21 @@ const Navbar = () => {
       {/* NAVBAR PRINCIPAL */}
       <nav
         className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-2' : 'py-4' // Cambia el padding vertical al hacer scroll
+          isScrolled ? 'py-2' : 'py-4'
         }`}
       >
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo + Nombre */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/aurolab.jpg"
+              src="/logo1.jpeg"
               alt="Logo de AuroLab"
-              width={200}
+              width={400}
               height={200}
               className={`transition-all duration-300 ${
-                isScrolled ? 'w-16 h-12' : 'w-24 h-16' // Cambia el tamaño del logo al hacer scroll
+                isScrolled ? 'w-40 h-10' : 'w-54 h-14'
               }`}
+              
             />
           </Link>
 
@@ -109,14 +120,14 @@ const Navbar = () => {
           </div>
 
           {/* Botón menú móvil */}
-          <button className="md:hidden text-blue-900 hover:text-blue-600" onClick={toggleMobileMenu}>
+          <button className="md:hidden text-blue-900 hover:text-blue-600 mr-4" onClick={toggleMobileMenu}>
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Menú móvil */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4">
+          <div className="md:hidden mt-4 px-4">
             <ul className="flex flex-col space-y-4 text-blue-900">
               {Object.values(links).map((link, index) => (
                 <NavItem
@@ -126,6 +137,7 @@ const Navbar = () => {
                   toggle={() => toggleDropdown(link.href)}
                   close={closeDropdown}
                   isMobile
+                  closeMobileMenu={closeMobileMenu} // Pasa la función para cerrar el menú móvil
                 />
               ))}
             </ul>
@@ -144,6 +156,7 @@ const Navbar = () => {
               <Link
                 href="/contacto"
                 className="bg-[#21CDAD] text-white px-4 py-2 rounded-md font-semibold text-center hover:bg-[#1fb49a] transition"
+                onClick={closeMobileMenu} // Cierra el menú móvil al hacer clic
               >
                 Contáctanos
               </Link>
