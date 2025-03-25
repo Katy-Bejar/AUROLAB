@@ -1,4 +1,6 @@
+'use client';
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Monitoreo() {
   return (
@@ -28,22 +30,6 @@ export default function Monitoreo() {
             concerns or rule out any potential concerns which are critical 
             tools in helping healthcare providers understand.
           </p>
-
-          {/* Botones responsivos */}
-          {/* <div className="mt-6 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-            <a
-              href="#"
-              className="px-6 py-3 text-lg font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition w-full sm:w-auto text-center"
-            >
-              → Insurance Plans
-            </a>
-            <a
-              href="#"
-              className="px-6 py-3 text-lg font-medium text-white border border-white rounded-lg hover:bg-white hover:text-blue-600 transition w-full sm:w-auto text-center"
-            >
-              Prepare For A Test
-            </a>
-          </div> */}
         </div>
       </div>
 
@@ -77,31 +63,13 @@ export default function Monitoreo() {
 
           {/* Sección de Preparación */}
           <div className="bg-green-400 text-white rounded-lg p-6 shadow-lg">
-            <h3 className="text-lg font-semibold">Se realizan Monitoreo Ambientales y ocupacionales   
-            .</h3>
+            <h3 className="text-lg font-semibold">
+              Se realizan Monitoreo Ambientales y Ocupacionales.
+            </h3>
             <p className="mt-2 text-sm">
               To reduce your wait time, complete the personal information on the form.
             </p>
           </div>
-
-          {/* Descarga de Brochures */}
-          {/* <div className="bg-white shadow-lg rounded-lg p-6">
-            <h3 className="text-lg font-semibold text-blue-900">Download Brochure</h3>
-            <div className="mt-4 space-y-3">
-              <a
-                href="#"
-                className="flex items-center justify-between px-4 py-3 bg-green-400 text-white rounded-lg hover:bg-green-500 transition"
-              >
-                <span>📄 Our Report 2022</span>
-              </a>
-              <a
-                href="#"
-                className="flex items-center justify-between px-4 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition"
-              >
-                <span>📄 Company Brochure</span>
-              </a>
-            </div>
-          </div> */}
         </div>
 
         {/* Contenido Principal */}
@@ -113,41 +81,40 @@ export default function Monitoreo() {
             of dietary protein, fat, and carbohydrates.
           </p>
 
-          {/* Imagen con Botón de Video */}
-          {/* <div className="relative mt-6">
-            <Image
-              src="/general-diagnostic-video.jpg"
-              alt="General Diagnostic"
-              width={800}
-              height={450}
-              className="rounded-lg shadow-lg"
-            />
-            <button className="absolute inset-0 flex items-center justify-center">
-              <span className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-                ▶
-              </span>
-            </button>
-          </div> */}
-
-          {/* Imágenes Adicionales */}
+          {/* Imágenes Adicionales con animación y efecto hover */}
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Image
-              src="/monitoreo-ambiental.jpg"
-              alt="Blood Test"
-              width={400}
-              height={300}
-              className="rounded-lg shadow-lg"
-            />
-            <Image
-              src="/monitoreo-ocupacional.jpg"
-              alt="Sample Analysis"
-              width={400}
-              height={300}
-              className="rounded-lg shadow-lg"
-            />
+            {[
+              {
+                src: "/monitoreo-ambiental.jpg",
+                alt: "Monitoreo Ambiental",
+              },
+              {
+                src: "/monitoreo-ocupacional.jpg",
+                alt: "Monitoreo Ocupacional",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -300 : 300 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
+                className="relative rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-blue-500/40 hover:shadow-2xl"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={400}
+                  height={300}
+                  className="w-full h-auto object-cover transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-blue-900 opacity-0 hover:opacity-50 transition duration-300"></div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 }
+

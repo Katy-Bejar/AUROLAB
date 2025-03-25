@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
 export default function Home() {
-  // Referencia para detectar cuándo la sección "Más Servicios" está en la vista
   const serviciosRef = useRef(null);
   const isInView = useInView(serviciosRef, { once: true, margin: "-100px" });
 
@@ -25,9 +25,11 @@ export default function Home() {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
             BIENVENIDO A AUROLAB
           </h1>
+          <Link href="/cotizacion">
           <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
             Solicitar una Cotización
           </button>
+          </Link>
         </div>
       </div>
 
@@ -40,23 +42,25 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {[
             {
-              title: "Análisis Fisicoquímico",
-              description:
-                "Evaluación de propiedades químicas y físicas en muestras.",
+              title: "Análisis Químico",
+              description: "Evaluación de propiedades químicas y físicas en muestras.",
               image: "/fisicoquimico.jpg",
-              button: "→ Solicitar Prueba",
+              button: "→ Ver más información",
+              href: "/analisis/quimico",
             },
             {
               title: "Análisis Microbiológico",
               description: "Detección de microorganismos en diversas muestras.",
               image: "/microbiologico.jpg",
-              button: "→ Registro",
+              button: "→ Ver más información",
+              href: "/analisis/microbiologico",
             },
             {
               title: "Monitoreo Ambiental",
               description: "Control y evaluación de calidad ambiental.",
               image: "/monitoreo.jpg",
-              button: "→ Agendar Cita",
+              button: "→ Ver más información",
+              href: "/monitoreo",
             },
           ].map((service, index) => (
             <div
@@ -71,6 +75,7 @@ export default function Home() {
                   height={300}
                   className="w-full h-[200px] md:h-[300px] object-cover"
                 />
+                <div className="absolute inset-0 bg-blue-900 opacity-0 hover:opacity-40 transition duration-300"></div>
                 <svg
                   className="absolute bottom-0 left-0 w-full"
                   viewBox="0 0 500 50"
@@ -83,15 +88,13 @@ export default function Home() {
                 </svg>
               </div>
               <div className="p-4 md:p-6 text-center">
-                <h3 className="text-lg md:text-xl font-bold text-blue-900">
-                  {service.title}
-                </h3>
-                <p className="text-sm md:text-base text-gray-600 mt-2">
-                  {service.description}
-                </p>
-                <button className="mt-4 px-3 py-1 md:px-4 md:py-2 text-blue-900 border border-blue-900 rounded-lg hover:bg-blue-900 hover:text-white transition">
-                  {service.button}
-                </button>
+                <h3 className="text-lg md:text-xl font-bold text-blue-900">{service.title}</h3>
+                <p className="text-sm md:text-base text-gray-600 mt-2">{service.description}</p>
+                <Link href={service.href}>
+                  <span className="mt-4 inline-block px-3 py-1 md:px-4 md:py-2 text-blue-900 border border-blue-900 rounded-lg hover:bg-blue-900 hover:text-white transition">
+                    {service.button}
+                  </span>
+                </Link>
               </div>
             </div>
           ))}
@@ -141,9 +144,9 @@ export default function Home() {
           ].map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -300 : 300 }} // Estado inicial: invisible y desplazado horizontalmente
-              animate={isInView ? { opacity: 1, x: 0 } : {}} // Estado animado: visible y en su posición original
-              transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }} // Retraso, duración y suavizado de la animación
+              initial={{ opacity: 0, x: index % 2 === 0 ? -300 : 300 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl"
             >
               {service.iframe ? (
@@ -154,13 +157,16 @@ export default function Home() {
                   allowFullScreen
                 ></iframe>
               ) : (
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  width={500}
-                  height={300}
-                  className="w-full h-48 md:h-72 object-cover"
-                />
+                <div className="relative">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={500}
+                    height={300}
+                    className="w-full h-48 md:h-72 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-blue-900 opacity-0 hover:opacity-40 transition duration-300"></div>
+                </div>
               )}
               <div className="p-4">
                 <span

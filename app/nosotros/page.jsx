@@ -1,11 +1,17 @@
+'use client';
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Nosotros() {
   return (
     <section className="w-full">
       {/* SECCIÓN PRINCIPAL CON IMAGEN DE FONDO */}
-      <div className="relative w-full h-screen flex items-center justify-center">
-        {/* Imagen de fondo optimizada */}
+      <div
+        className="relative w-full h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)',
+        }}
+      >
         <div className="absolute inset-0">
           <Image
             src="/Nosotros.jpg"
@@ -17,10 +23,8 @@ export default function Nosotros() {
           />
         </div>
 
-        {/* Superposición azul semitransparente */}
         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-800/40 to-transparent"></div>
 
-        {/* Contenido centrado */}
         <div className="relative z-10 flex flex-col items-center text-center text-white px-6 sm:px-12">
           <h1 className="text-3xl md:text-5xl font-bold">Nosotros</h1>
           <p className="mt-4 max-w-2xl text-lg md:text-xl">
@@ -29,7 +33,6 @@ export default function Nosotros() {
             are committed to excellence in our work.
           </p>
 
-          {/* Botones responsivos */}
           <div className="mt-6 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
             <a
               href="#"
@@ -49,21 +52,34 @@ export default function Nosotros() {
 
       {/* SECCIÓN ADICIONAL CON TEXTO + IMAGEN RESPONSIVA */}
       <div className="container mx-auto px-6 py-16 bg-white rounded-lg shadow-lg mt-12 flex flex-col md:flex-row items-center">
-        {/* Imagen a la izquierda */}
-        <div className="w-full md:w-1/2 flex justify-center">
-          <div className="rounded-lg overflow-hidden shadow-lg">
+        {/* Imagen con animación y hover */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full md:w-1/2 flex justify-center"
+        >
+          <div className="relative group rounded-lg overflow-hidden shadow-lg w-full max-w-md">
             <Image
               src="/nosotros-equipo.jpg"
               alt="Nuestro equipo"
               width={600}
               height={400}
-              className="rounded-lg w-full max-w-md"
+              className="rounded-lg w-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-blue-900 opacity-0 group-hover:opacity-50 transition duration-300 rounded-lg"></div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Texto a la derecha */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center text-left md:pl-12">
+        {/* Texto con animación */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full md:w-1/2 flex flex-col justify-center text-left md:pl-12 mt-8 md:mt-0"
+        >
           <h2 className="text-2xl md:text-3xl font-bold text-blue-900">
             Nuestro Equipo
           </h2>
@@ -73,7 +89,6 @@ export default function Nosotros() {
             <span className="font-bold"> experiencia en análisis en laboratorio</span> para brindar un servicio de calidad.
           </p>
 
-          {/* Lista con Flexbox */}
           <div className="mt-6 space-y-4">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-green-200 text-green-600 flex items-center justify-center rounded-full mr-3">
@@ -98,9 +113,10 @@ export default function Nosotros() {
               Servicios de soporte para asegurarle un monitoreo eficiente.
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
+
 
