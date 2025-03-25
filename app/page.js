@@ -17,6 +17,7 @@ export default function Home() {
         style={{
           backgroundImage:
             "url(https://demo.cmssuperheroes.com/themeforest/chemlabs/wp-content/uploads/chemlabs-slider-1.jpg)",
+            clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)',
         }}
       >
         <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
