@@ -1,49 +1,78 @@
+import Link from "next/link";
+import { Facebook, Instagram, Youtube, Linkedin, Phone, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
+
 const Footer = () => {
-    return (
-      <footer className="bg-blue-900 text-white py-10 mt-16">
-        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo y Nombre */}
-          <div>
-            <img src="/img/aurolab.jpg" alt="Logo" className="w-32 mb-4" />
-           
-          </div>
-  
-          {/* About Us */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">About Us</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Leadership Team</a></li>
-              <li><a href="#">News & Media</a></li>
-              <li><a href="#">Sustainability</a></li>
-              <li><a href="#">Careers</a></li>
-            </ul>
-          </div>
-  
-          {/* Tests & Services */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Tests & Services</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li><a href="#">General Diagnostic Testing</a></li>
-              <li><a href="#">Genetic Testing</a></li>
-              <li><a href="#">Food Sensitivity Testing</a></li>
-              <li><a href="#">Hormone Insights Testing</a></li>
-            </ul>
-          </div>
-  
-          {/* Contact */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Quick Contact</h3>
-            <p className="text-gray-300">If you have any questions, feel free to contact us.</p>
-            <p className="mt-4"><span className="font-bold">Email:</span> <a href="mailto:info@email.com" className="text-green-400">info@email.com</a></p>
-            <p><span className="font-bold">Phone:</span> <a href="tel:01061245741" className="text-green-400">02 01061245741</a></p>
+  return (
+    <footer className="bg-blue-900 text-white py-10 mt-16">
+      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Logo */}
+        <div>
+          <Image src="/aurolab.jpg" alt="Logo AuroLab" width={120} height={80} className="mb-4 rounded-lg" />
+          <p className="text-gray-300 text-sm">
+            Comprometidos con la calidad en servicios de análisis y monitoreo ambiental.
+          </p>
+        </div>
+
+        {/* Nosotros */}
+        <div>
+          <h3 className="font-bold text-lg mb-4">Nosotros</h3>
+          <ul className="space-y-2 text-gray-300 text-sm">
+            <li><Link href="/nosotros">¿Quiénes somos?</Link></li>
+            <li><Link href="/analisis/quimico">Análisis Fisicoquímico</Link></li>
+            <li><Link href="/analisis/microbiologico">Análisis Microbiológico</Link></li>
+            <li><Link href="/monitoreo">Monitoreo Ambiental</Link></li>
+          </ul>
+        </div>
+
+        {/* Contacto */}
+        <div>
+          <h3 className="font-bold text-lg mb-4">Contáctanos</h3>
+          <ul className="space-y-3 text-sm text-gray-300">
+            <li className="flex items-center gap-2">
+              <Phone size={16} className="text-green-400" />
+              <a href="tel:+51941678446" className="hover:underline">+51 941 678 446</a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Mail size={16} className="text-green-400" />
+              <a href="mailto:comercial@aurolab.com.pe" className="hover:underline">comercial@aurolab.com.pe</a>
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={16} className="text-green-400" />
+              <span>Avenida Canadá, entre RosaLuz y Santa Rosa</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Redes Sociales */}
+        <div>
+          <h3 className="font-bold text-lg mb-4">Síguenos</h3>
+          <div className="flex gap-4">
+            <a href="https://www.facebook.com/AuroLaboratorio/" target="_blank" rel="noopener noreferrer">
+              <Facebook size={24} className="text-white hover:text-[#21CDAD] transition" />
+            </a>
+            <a href="https://www.instagram.com/aurolaboratorio/" target="_blank" rel="noopener noreferrer">
+              <Instagram size={24} className="text-white hover:text-[#21CDAD] transition" />
+            </a>
+            <a href="https://www.youtube.com/channel/UCPfSUFOpvglkc-Q30QLEeXg" target="_blank" rel="noopener noreferrer">
+              <Youtube size={24} className="text-white hover:text-[#21CDAD] transition" />
+            </a>
+            <a href="https://www.linkedin.com/company/aurolab-s-a-c/" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={24} className="text-white hover:text-[#21CDAD] transition" />
+            </a>
+            <a href="https://www.tiktok.com/@laboratorioauro?lang=es" target="_blank" rel="noopener noreferrer">
+              <Image src="/tiktok-icon.png" alt="TikTok" width={24} height={24} className="hover:opacity-80 transition" />
+            </a>
           </div>
         </div>
-  
-      
-      </footer>
-    );
-  };
-  
-  export default Footer;
-  
+      </div>
+
+      {/* Créditos inferiores */}
+      <div className="mt-10 text-center text-sm text-gray-400">
+        &copy; {new Date().getFullYear()} AuroLab S.A.C. | Todos los derechos reservados.
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
