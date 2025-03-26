@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Nosotros() {
   return (
-    <section className="w-full">
+    <section className="w-full overflow-x-hidden">
       {/* SECCIÓN PRINCIPAL CON IMAGEN DE FONDO */}
       <div
         className="relative w-full h-screen flex items-center justify-center overflow-hidden"

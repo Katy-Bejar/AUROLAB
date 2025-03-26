@@ -10,7 +10,7 @@ export default function Home() {
   const isInView = useInView(serviciosRef, { once: true, margin: "-100px" });
 
   return (
-    <main className="bg-gray-100">
+    <main className="bg-gray-100 overflow-x-hidden">
       {/* Hero Section */}
       <div
         className="relative w-full h-[400px] md:h-[600px] lg:h-[900px] bg-cover bg-center flex items-center justify-center"

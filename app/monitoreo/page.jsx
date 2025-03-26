@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Monitoreo() {
   return (
-    <section className="w-full">
+    <section className="w-full overflow-x-hidden">
       {/* SECCIÓN PRINCIPAL CON IMAGEN DE FONDO */}
       <div className="relative w-full h-screen flex items-center justify-start px-6 sm:px-16">
         {/* Imagen de fondo optimizada */}

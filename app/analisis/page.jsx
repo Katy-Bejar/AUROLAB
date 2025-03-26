@@ -21,7 +21,7 @@ export default function AnalisisLaboratorio() {
 
 
   return (
-    <main className="bg-gray-100 relative">
+    <main className="bg-gray-100 relative overflow-x-hidden">
       {/* Fondo de partículas */}
       <div className="absolute inset-0 z-0">
         <Particles
