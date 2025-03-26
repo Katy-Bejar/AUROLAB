@@ -99,25 +99,25 @@ const Navbar = () => {
           </ul>
 
           {/* Zona derecha: buscador + botón */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* <div className="hidden md:flex items-center space-x-4"> */}
             {/* Buscador */}
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <Search size={20} className="text-blue-900" />
               <input
                 type="text"
                 placeholder="Buscar..."
                 className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#21CDAD] transition-all duration-200"
               />
-            </div>
+            </div> */}
 
             {/* Botón de contacto */}
-            <Link
+            {/* <Link
               href="/contacto"
               className="bg-[#21CDAD] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#1fb49a] transition"
             >
               Contáctanos
             </Link>
-          </div>
+          </div> */}
 
           {/* Botón menú móvil */}
           <button className="md:hidden text-blue-900 hover:text-blue-600 mr-4" onClick={toggleMobileMenu}>
