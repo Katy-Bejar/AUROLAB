@@ -1,3 +1,5 @@
+import FloatingButtons from '@/components/FloatingButtons';
+
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -14,6 +16,8 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <FloatingButtons />
+
       </body>
     </html>
   );

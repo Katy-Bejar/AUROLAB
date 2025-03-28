@@ -3,32 +3,50 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 export default function Home() {
   const serviciosRef = useRef(null);
   const isInView = useInView(serviciosRef, { once: true, margin: "-100px" });
 
+  // Array de imágenes para el slider
+  const heroImages = [
+    "/home-fondo1.jpg",
+    "/home-fondo2.jpg",
+    "/home-fondo3.jpg",
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000); // Cambia cada 5 segundos
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="bg-gray-100 overflow-x-hidden">
-      {/* Hero Section */}
+      {/* Hero Section con cambio automático */}
       <div
-        className="relative w-full h-[400px] md:h-[600px] lg:h-[900px] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[400px] md:h-[600px] lg:h-[900px] bg-cover bg-center flex items-center justify-center transition-all duration-1000"
         style={{
-          backgroundImage:
-            "url(https://demo.cmssuperheroes.com/themeforest/chemlabs/wp-content/uploads/chemlabs-slider-1.jpg)",
-            clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)',
+          backgroundImage: `url(${heroImages[currentImageIndex]})`,
+          clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)',
         }}
       >
-        <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
+        <div className="absolute inset-0 bg-blue-900 opacity-30 transition duration-500"></div>
         <div className="relative text-white text-center px-4">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold drop-shadow-lg">
             BIENVENIDO A AUROLAB
           </h1>
-          <Link href="/cotizacion">
-          <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
-            Solicitar una Cotización
-          </button>
+          <Link href="/contacto">
+            <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
+              Quiero ver más información
+            </button>
           </Link>
         </div>
       </div>
@@ -42,25 +60,25 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {[
             {
-              title: "Análisis Químico",
+              title: "Monitoreo Ambiental",
               description: "Evaluación de propiedades químicas y físicas en muestras.",
               image: "/fisicoquimico.jpg",
               button: "→ Ver más información",
-              href: "/analisis/quimico",
+              href: "/monitoreo/ambiental",
             },
             {
-              title: "Análisis Microbiológico",
+              title: "Monitoreo Ocupacional",
               description: "Detección de microorganismos en diversas muestras.",
               image: "/microbiologico.jpg",
               button: "→ Ver más información",
-              href: "/analisis/microbiologico",
+              href: "/monitoreo/ocupacional",
             },
             {
-              title: "Monitoreo Ambiental",
+              title: "Analisis de Laboratorio",
               description: "Control y evaluación de calidad ambiental.",
               image: "/monitoreo.jpg",
               button: "→ Ver más información",
-              href: "/monitoreo",
+              href: "/analisis",
             },
           ].map((service, index) => (
             <div
@@ -104,7 +122,7 @@ export default function Home() {
       {/* Sección Adicional */}
       <div className="max-w-6xl mx-auto p-4 md:p-6" ref={serviciosRef}>
         <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase">
-          Más Servicios
+        ACREDITACIONES
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
