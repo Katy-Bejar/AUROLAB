@@ -1,11 +1,63 @@
 'use client';
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function NosotrosMisionVision() {
+  const heroImages = [
+    "/home-fondo1.jpg",
+    "/home-fondo2.jpg",
+    "/home-fondo3.jpg",
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="w-full py-20 px-6 bg-gradient-to-b from-white to-blue-50">
-      <div className="container mx-auto max-w-6xl">
+    <section className="w-full overflow-x-hidden bg-white">
+      {/* Fondo dinámico como en el área de Monitoreo */}
+      <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={heroImages[currentImageIndex]}
+            alt="Fondo Misión y Visión"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-blue-900/70"></div>
+        <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold"
+          >
+            Misión y Visión
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-4 text-lg md:text-xl"
+          >
+            {/* Los pilares fundamentales que definen nuestro compromiso con la excelencia ambiental. */}
+          </motion.p>
+        </div>
+      </div>
+      
+      <div className="container mx-auto max-w-6xl pt-16">
         {/* Título principal con efecto especial */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -14,9 +66,9 @@ export default function NosotrosMisionVision() {
           className="text-center mb-20 relative"
         >
           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-blue-400 to-green-400 rounded-full"></div>
-          <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 mb-6">
+          {/* <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 mb-6">
             Misión y Visión
-          </h1>
+          </h1> */}
           <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
             Los pilares fundamentales que definen nuestro compromiso con la excelencia ambiental
           </p>
