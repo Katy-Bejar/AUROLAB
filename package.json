@@ -9,9 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.3.0",
     "@tailwindcss/cli": "^4.0.14",
-    "@tsparticles/react": "^3.0.0",
-    "@tsparticles/slim": "^3.8.1",
     "@types/node": "^20.11.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
@@ -20,6 +19,7 @@
     "next": "^15.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-pdf": "^9.2.1",
     "react-tsparticles": "^2.12.0",
     "tsparticles": "^2.12.0"
   },
