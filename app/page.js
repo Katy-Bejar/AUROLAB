@@ -44,8 +44,24 @@ export default function Home() {
             BIENVENIDO A AUROLAB
           </h1>
           <Link href="/contacto">
-            <button className="mt-6 px-4 py-2 md:px-6 md:py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition">
-              Quiero ver más información
+            <button className="mt-6 mx-auto px-4 py-2 md:px-6 md:py-3 bg-white text-blue-900 font-bold rounded-lg shadow-md hover:bg-blue-600 hover:text-white transition flex justify-center items-center space-x-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-test-tube-diagonal-icon"
+              >
+                <path d="M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3" />
+                <path d="m16 2 6 6" />
+                <path d="M12 16H4" />
+              </svg>
+              <span>Quiero ver más información</span>
             </button>
           </Link>
         </div>
@@ -122,7 +138,7 @@ export default function Home() {
       {/* Sección Adicional */}
       <div className="max-w-6xl mx-auto p-4 md:p-6" ref={serviciosRef}>
         <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase">
-        ACREDITACIONES
+          ACREDITACIONES
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">

@@ -31,7 +31,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-  
+
       // Si el scroll está en la parte superior de la página
       if (currentScrollY === 0) {
         setIsScrolled(false);
@@ -43,7 +43,7 @@ const Navbar = () => {
         setHasScrolledOnce(true);
       }
     };
-  
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasScrolledOnce]);
@@ -57,7 +57,7 @@ const Navbar = () => {
             <Phone size={16} className="text-green-400" />
             <span className="hidden sm:inline">Celular: 941 678 446</span>
             <MapPin size={16} className="text-green-400" />
-            <span className="hidden sm:inline">Ubicación: Av. Canadá, entre Rosa Luz y Santa Rosa</span>
+            <span className="hidden sm:inline">Ubicación: Lima</span>
             <Clock size={16} className="text-green-400" />
             <span className="hidden sm:inline">Lun - Vie: 9:00am - 6:00pm</span>
           </div>
@@ -66,22 +66,19 @@ const Navbar = () => {
 
       {/* NAVBAR PRINCIPAL */}
       <nav
-        className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-2' : 'py-4'
-        }`}
+        className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'
+          }`}
       >
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container flex justify-between items-center ml-15">
           {/* Logo + Nombre */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2 ml-60">
             <Image
               src="/logo1.jpeg"
               alt="Logo de AuroLab"
               width={400}
               height={200}
-              className={`transition-all duration-300 ${
-                isScrolled ? 'w-40 h-10' : 'w-54 h-14'
-              }`}
-              
+              className={`transition-all duration-300 ${isScrolled ? 'w-40 h-10' : 'w-54 h-14'
+                }`}
             />
           </Link>
 
@@ -100,8 +97,8 @@ const Navbar = () => {
 
           {/* Zona derecha: buscador + botón */}
           {/* <div className="hidden md:flex items-center space-x-4"> */}
-            {/* Buscador */}
-            {/* <div className="flex items-center space-x-2">
+          {/* Buscador */}
+          {/* <div className="flex items-center space-x-2">
               <Search size={20} className="text-blue-900" />
               <input
                 type="text"
@@ -110,8 +107,8 @@ const Navbar = () => {
               />
             </div> */}
 
-            {/* Botón de contacto */}
-            {/* <Link
+          {/* Botón de contacto */}
+          {/* <Link
               href="/contacto"
               className="bg-[#21CDAD] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#1fb49a] transition"
             >

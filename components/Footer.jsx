@@ -68,13 +68,14 @@ const Footer = () => {
                 href={icon.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="transition transform hover:scale-110"
               >
                 <Image
                   src={icon.src}
                   alt={icon.alt}
                   width={28}
                   height={28}
-                  className="hover:opacity-80 transition w-7 h-7 object-contain"
+                  className="transition w-7 h-7 object-contain hover:filter hover:brightness-0 hover:sepia hover:hue-rotate-[190deg] hover:saturate-200"
                 />
               </a>
             ))}
