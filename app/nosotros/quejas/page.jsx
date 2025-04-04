@@ -24,54 +24,54 @@ export default function NosotrosQuejas() {
 
   return (
     <section className="w-full overflow-x-hidden bg-white">
-      {/* Hero Section */}
-      <div className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Versión refinada */}
+      <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={heroImages[currentImageIndex]}
-            alt="Fondo Atención a Quejas"
+            alt="Fondo Políticas Aurolab"
             fill
-            className="object-cover transition-opacity duration-1000 ease-in-out"
-            style={{ opacity: 0.9 }}
+            className="object-cover transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out"
             quality={100}
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-purple-900/70"></div>
-        <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-6xl font-bold mb-6"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white">
-              Flujograma de Atención a Quejas
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="mt-4 text-xl md:text-2xl font-light max-w-2xl mx-auto"
-          >
-            Conozca nuestro proceso formal para la gestión de quejas y reclamos
-          </motion.p>
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-gray-900/80"></div>
+
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="mt-8"
+            transition={{ duration: 0.8 }}
           >
-            <a 
-              href="#flujograma" 
-              className="inline-flex items-center px-8 py-3 bg-white text-blue-900 rounded-full hover:bg-blue-50 transition-all shadow-lg font-medium text-lg"
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Flujograma de  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-green-300"> Atención a Quejas  </span>
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-xl md:text-2xl text-white/90 font-light mb-8"
             >
-              Ver proceso
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </a>
+              Conozca nuestro proceso formal para la gestión de quejas y reclamos
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <a
+                href="#politicas"
+                className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full hover:bg-white/20 transition-all font-medium"
+              >
+                Conocer más
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -95,7 +95,7 @@ export default function NosotrosQuejas() {
               En AuroLab contamos con un procedimiento establecido para atender sus quejas, garantizando:
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
@@ -119,7 +119,7 @@ export default function NosotrosQuejas() {
                 icon: "🔄"
               }
             ].map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all"
@@ -152,12 +152,12 @@ export default function NosotrosQuejas() {
               <p className="text-gray-700 mb-6 text-lg leading-relaxed">
                 Nuestro flujograma de atención a quejas sigue un proceso claro y estructurado:
               </p>
-              
+
               {/* Proceso actualizado según la imagen */}
               <div className="relative">
                 {/* Línea vertical */}
                 <div className="absolute left-6 top-0 h-full w-0.5 bg-blue-400"></div>
-                
+
                 {/* Pasos del proceso */}
                 <div className="space-y-8 pl-10">
                   {/* Paso 1: Queja */}
@@ -170,7 +170,7 @@ export default function NosotrosQuejas() {
                       <p className="text-gray-700">Inicio del proceso</p>
                     </div>
                   </div>
-                  
+
                   {/* Paso 2: Recepción */}
                   <div className="relative">
                     <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
@@ -181,7 +181,7 @@ export default function NosotrosQuejas() {
                       <p className="text-gray-700">Registro y acuse de recibo</p>
                     </div>
                   </div>
-                  
+
                   {/* Paso 3: Evaluación */}
                   <div className="relative">
                     <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
@@ -192,7 +192,7 @@ export default function NosotrosQuejas() {
                       <p className="text-gray-700">Revisión de la queja y análisis</p>
                     </div>
                   </div>
-                  
+
                   {/* Paso 4: Investigación */}
                   <div className="relative">
                     <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
@@ -203,7 +203,7 @@ export default function NosotrosQuejas() {
                       <p className="text-gray-700">Indagación de los hechos</p>
                     </div>
                   </div>
-                  
+
                   {/* Paso 5: Respuesta */}
                   <div className="relative">
                     <div className="absolute -left-10 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
@@ -216,10 +216,10 @@ export default function NosotrosQuejas() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <a 
-                  href="/documentos/flujograma-quejas.pdf" 
+                <a
+                  href="/documentos/flujograma-quejas.pdf"
                   download="Flujograma-de-Quejas-AuroLab.pdf"
                   className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-md font-medium text-lg"
                 >
@@ -228,8 +228,8 @@ export default function NosotrosQuejas() {
                   </svg>
                   Descargar PDF
                 </a>
-                <a 
-                  href="#contacto" 
+                <a
+                  href="#contacto"
                   className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 border border-blue-200 rounded-full hover:bg-blue-50 transition-all font-medium text-lg"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -272,7 +272,7 @@ export default function NosotrosQuejas() {
               Contamos con múltiples canales para atender sus requerimientos
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-100">
             {/* Teléfono */}
             <div className="p-8 group hover:bg-blue-50 transition-colors">
@@ -286,8 +286,8 @@ export default function NosotrosQuejas() {
                 <p className="text-gray-600 mb-4">
                   Línea directa de atención
                 </p>
-                <a 
-                  href="tel:011234567" 
+                <a
+                  href="tel:011234567"
                   className="text-blue-600 font-medium text-lg hover:text-blue-800 transition-colors"
                 >
                   (01) 123-4567
@@ -310,8 +310,8 @@ export default function NosotrosQuejas() {
                 <p className="text-gray-600 mb-4">
                   Envíe todos los detalles de su caso
                 </p>
-                <a 
-                  href="mailto:quejas@aurolab.com.pe" 
+                <a
+                  href="mailto:quejas@aurolab.com.pe"
                   className="text-blue-600 font-medium text-lg hover:text-blue-800 transition-colors"
                 >
                   quejas@aurolab.com.pe

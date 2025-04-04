@@ -71,7 +71,7 @@ export default function NosotrosPoliticas() {
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-gray-900/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-gray-900/80"></div>
         
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <motion.div

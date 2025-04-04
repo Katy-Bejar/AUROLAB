@@ -5,13 +5,13 @@ import Image from 'next/image';
 export default function FloatingButtons() {
   return (
     <div className="fixed right-4 bottom-6 flex flex-col items-end z-50">
-      {/* Botón de Catálogo con más separación arriba */}
+      {/* Botón de Servicios con más separación arriba */}
       <div className="mb-36">
         <Link
-          href="/catalogos"
-          className="bg-[#102770] text-white px-3 py-2 rounded-lg shadow-lg flex items-center justify-center text-lg font-medium transform rotate-[-90deg] origin-bottom-right hover:bg-[#0e245f] transition"
+          href="/servicios"
+          className="bg-[#102770] text-white px-4 py-2 rounded-lg shadow-lg flex items-center justify-center text-lg font-medium transform rotate-[-90deg] origin-bottom-right hover:bg-[#0e245f] transition"
         >
-          📥 Catálogos
+          📥 Servicios
         </Link>
       </div>
 

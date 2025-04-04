@@ -15,7 +15,7 @@ export default function PresentacionAurolab() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/30 to-transparent"></div>
-        
+
         {/* Título superpuesto */}
         <div className="absolute bottom-0 left-0 right-0 pb-20 px-6 text-center">
           <motion.h1
@@ -36,6 +36,21 @@ export default function PresentacionAurolab() {
           </motion.p>
         </div>
       </div>
+
+      {/* Introducción sobre la empresa */}
+      <div className="bg-white py-12 px-6">
+        <div className="container mx-auto max-w-4xl text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-lg md:text-xl text-gray-700 leading-relaxed"
+          >
+            <strong>AUROLABORATORIO E INGENIERÍA S.A.C.</strong> es una empresa privada que ofrece servicios especializados de muestreo, monitoreo y análisis de muestras ambientales y ocupacionales, orientados a sectores como el industrial, minero-metalúrgico, hidrocarburos, agroindustrial, pesquero, entre otros.
+          </motion.p>
+        </div>
+      </div>
+
 
       {/* Sección descriptiva */}
       <div className="relative bg-white py-20 px-6">
@@ -113,20 +128,65 @@ export default function PresentacionAurolab() {
               </p>
             </div>
 
-            {/* Imagen del equipo grupal */}
-            <div className="relative h-140 w-full  rounded-2xl overflow-hidden shadow-xl flex justify-center items-center">
-              <Image
-                src="/nosotros/equipo-aurolab.jpg" // Reemplazar con imagen real del equipo
-                alt="Equipo de Aurolab"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent flex items-end p-8">
-                <div>
-                  <h3 className="text-white text-2xl font-bold mb-2">Especialistas en Análisis Ambiental</h3>
-                  <p className="text-blue-200">Equipo multidisciplinario con amplia experiencia</p>
+            {/* Galería del equipo grupal */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12">
+              {[
+                {
+                  name: "Juan Pérez",
+                  role: "Especialista en Análisis Químico",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "María López",
+                  role: "Ingeniera Ambiental",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "Carlos Gómez",
+                  role: "Técnico en Monitoreo",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "Ana Torres",
+                  role: "Coordinadora de Proyectos",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "Luis Fernández",
+                  role: "Especialista en Seguridad Ocupacional",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "Sofía Ramírez",
+                  role: "Analista de Calidad",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "Pedro Castillo",
+                  role: "Ingeniero Químico",
+                  image: "/perfil-trabajador.png"
+                },
+                {
+                  name: "Laura Vega",
+                  role: "Especialista en Gestión Ambiental",
+                  image: "/perfil-trabajador.png"
+                }
+              ].map((person, index) => (
+                <div key={index} className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                  <div className="relative w-full h-48">
+                    <Image
+                      src={person.image}
+                      alt={person.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <h3 className="text-lg font-bold text-gray-900">{person.name}</h3>
+                    <p className="text-gray-600">{person.role}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
             {/* Especialidades del equipo */}
@@ -166,7 +226,7 @@ export default function PresentacionAurolab() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Nuestros <span className="text-blue-600">Servicios</span></h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {

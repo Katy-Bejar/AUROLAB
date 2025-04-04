@@ -63,7 +63,9 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMen
               onClick={(e) => {
                 if (isMobile) {
                   // En móviles, navega directamente al hacer clic en el texto
-                  closeMobileMenu(); // Cierra el menú móvil
+                  if (typeof closeMobileMenu === 'function') {
+                    closeMobileMenu(); // Cierra el menú móvil
+                  }
                 } else {
                   close(); // Cierra el menú en desktop
                 }
@@ -104,7 +106,9 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMen
                     className="block px-4 py-2 text-blue-900 font-medium hover:text-[#21CDAD] hover:bg-gray-100 transition-colors duration-200"
                     onClick={() => {
                       close(); // Cierra el menú móvil después de hacer clic
-                      closeMobileMenu(); // Cierra el menú móvil
+                      if (typeof closeMobileMenu === 'function') {
+                        closeMobileMenu(); // Cierra el menú móvil
+                      }
                     }}
                   >
                     {sublink.name}
@@ -124,7 +128,9 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMen
           className="text-blue-900 font-semibold hover:text-[#21CDAD] transition-colors duration-200"
           onClick={() => {
             close(); // Cierra el menú móvil después de hacer clic
-            closeMobileMenu(); // Cierra el menú móvil
+            if (typeof closeMobileMenu === 'function') {
+              closeMobileMenu(); // Cierra el menú móvil
+            }
           }}
         >
           {link.name}

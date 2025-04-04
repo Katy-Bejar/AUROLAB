@@ -46,17 +46,21 @@ export const links = {
     ],
   },
 
-  monitoreo: {
-    name: "Monitoreo",
-    href: "/monitoreo",
+  monitoreoAmbiental: {
+    name: "Monitoreo Ambiental",
+    href: "/monitoreo/ambiental",
     sublinks: [
       {
-        name: "Monitoreo Ambiental",
-        href: "/monitoreo/ambiental",
+        name: "Monitoreo de Agua",
+        href: "/monitoreo-ambiental/monitoreo-agua",
+      },
+      {
+        name: "Monitoreo de Calidad de Aire",
+        href: "/monitoreo-ambiental/monitoreo-aire",
       },
       {
         name: "Monitoreo Ocupacional",
-        href: "/monitoreo/ocupacional",
+        href: "/monitoreo-ambiental/monitoreo-ocupacional",
       },
     ],
   },
