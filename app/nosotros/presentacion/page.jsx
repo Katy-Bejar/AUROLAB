@@ -216,68 +216,6 @@ export default function PresentacionAurolab() {
               ))}
             </div>
           </motion.div>
-
-          {/* Servicios destacados */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mb-20"
-          >
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Nuestros <span className="text-blue-600">Servicios</span></h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Análisis Ambientales",
-                  description: "Evaluación de agua, aire, suelo y sedimentos con metodologías acreditadas",
-                  icon: "/icons/analisis-ambiental.svg"
-                },
-                {
-                  title: "Monitoreo Ocupacional",
-                  description: "Evaluación de agentes físicos y químicos en ambientes laborales",
-                  icon: "/icons/monitoreo-ocupacional.svg"
-                },
-                {
-                  title: "Asesoría Técnica",
-                  description: "Consultoría especializada en gestión ambiental y seguridad ocupacional",
-                  icon: "/icons/asesoria-tecnica.svg"
-                },
-                {
-                  title: "Planificación Logística",
-                  description: "Diseño e implementación de sistemas de monitoreo ambiental",
-                  icon: "/icons/planificacion-logistica.svg"
-                },
-                {
-                  title: "Gestión de Contingencias",
-                  description: "Protocolos para prevención y atención de situaciones emergentes",
-                  icon: "/icons/gestion-contingencias.svg"
-                },
-                {
-                  title: "Capacitaciones",
-                  description: "Programas de formación en seguridad y monitoreo ambiental",
-                  icon: "/icons/capacitaciones.svg"
-                }
-              ].map((service, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all h-full">
-                  <div className="bg-blue-50 w-16 h-16 rounded-lg flex items-center justify-center mb-4">
-                    <div className="relative w-10 h-10">
-                      <Image
-                        src={service.icon}
-                        alt={service.title}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
           {/* Mensaje final */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

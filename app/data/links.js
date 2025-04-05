@@ -48,7 +48,7 @@ export const links = {
 
   monitoreoAmbiental: {
     name: "Monitoreo Ambiental",
-    href: "/monitoreo/ambiental",
+    href: "/monitoreo-ambiental",
     sublinks: [
       {
         name: "Monitoreo de Agua",

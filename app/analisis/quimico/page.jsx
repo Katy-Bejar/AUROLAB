@@ -12,7 +12,7 @@ export default function AnalisisQuimico() {
     <main className="bg-gray-100">
       {/* Hero Section */}
       <div
-        className="relative w-full h-[400px] md:h-[600px] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[400px] md:h-[450px] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: "url(/analisis-quimico.jpg)", // Cambia esta imagen por la que desees
           clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)', // Curva en la parte inferior

@@ -80,14 +80,14 @@ export default function Home() {
               description: "Evaluación de propiedades químicas y físicas en muestras.",
               image: "/fisicoquimico.jpg",
               button: "→ Ver más información",
-              href: "/monitoreo/ambiental",
+              href: "/monitoreo-ambiental",
             },
             {
               title: "Monitoreo Ocupacional",
               description: "Detección de microorganismos en diversas muestras.",
               image: "/microbiologico.jpg",
               button: "→ Ver más información",
-              href: "/monitoreo/ocupacional",
+              href: "/monitoreo-ambiental/monitoreo-ocupacional",
             },
             {
               title: "Analisis de Laboratorio",
@@ -136,85 +136,48 @@ export default function Home() {
       </div>
 
       {/* Sección Adicional */}
-      <div className="max-w-6xl mx-auto p-4 md:p-6" ref={serviciosRef}>
-        <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase">
+      <div className="max-w-6xl mx-auto p-4 md:p-6 text-center mt-16" ref={serviciosRef}>
+        <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase mb-8">
           ACREDITACIONES
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        {/* Grilla de logos */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-20 gap-x-12 justify-items-center">
           {[
-            {
-              title: "Innovación en Vacunas a Gran Velocidad",
-              description:
-                "La seguridad es clave en este proceso, por lo que identificamos y discutimos factores clave en el desarrollo de vacunas.",
-              image: "/certificado.jpg",
-              tag: "Vacunas",
-              tagColor: "bg-blue-500",
-            },
-            {
-              title: "Aumento de la Inscripción en Ensayos Clínicos",
-              description:
-                "Brindamos soporte en el reclutamiento de pacientes para ensayos clínicos, asegurando calidad y precisión.",
-              image: "/info.jpg",
-              tag: "Investigación",
-              tagColor: "bg-yellow-500",
-            },
-            {
-              title: "Incorporando la Voz del Paciente",
-              description:
-                "Ayudamos a integrar la perspectiva del paciente en procesos de reclutamiento y desarrollo médico.",
-              image: "/hoja.jpg",
-              tag: "Participación",
-              tagColor: "bg-teal-500",
-            },
-            {
-              title: "Cerrando la Brecha en Oncología Pediátrica",
-              description:
-                "El entorno regulatorio ayuda a los patrocinadores con esfuerzos complejos en oncología pediátrica.",
-              iframe: "https://www.youtube.com/embed/TCkE9s-sku8",
-              tag: "Pediatría",
-              tagColor: "bg-green-500",
-            },
-          ].map((service, index) => (
+            { src: '/inacal.png', alt: 'INACAL', description: '', width: 280, height: 280 },
+            { src: '/ias.png', alt: 'IAS', description: '', width: 380, height: 380 },
+            { src: '/iso.png', alt: 'ISO 17025', description: '', width: 130, height: 130 },
+          ].map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -300 : 300 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="flex flex-col items-center text-center space-y-4"
             >
-              {service.iframe ? (
-                <iframe
-                  className="w-full h-48 md:h-72"
-                  src={service.iframe}
-                  frameBorder="0"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <div className="relative">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-48 md:h-72 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-blue-900 opacity-0 hover:opacity-40 transition duration-300"></div>
-                </div>
-              )}
-              <div className="p-4">
-                <span
-                  className={`${service.tagColor} text-white text-xs font-bold px-3 py-1 rounded-full`}
-                >
-                  {service.tag}
-                </span>
-                <h3 className="text-lg font-semibold mt-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm mt-1">{service.description}</p>
-              </div>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={item.width}
+                height={item.height}
+                className="object-contain"
+              />
+              <p className="text-lg font-semibold text-gray-800">{item.description}</p>
             </motion.div>
           ))}
         </div>
+
+        {/* Botón centrado */}
+        <div className="mt-12 flex justify-center">
+          <Link href="/acreditaciones">
+            <button className="px-4 py-2 md:px-6 md:py-3 bg-blue-700 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg transition-all">
+              Quiero ver más información
+            </button>
+          </Link>
+        </div>
       </div>
+
     </main>
   );
 }

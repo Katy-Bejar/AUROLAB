@@ -3,128 +3,125 @@ import { motion } from "framer-motion";
 
 export default function Contacto() {
   return (
-    <div className="bg-white text-gray-800 min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-center text-blue-900 mb-6">
-        Contáctanos
-      </h1>
-      <p className="text-lg text-center text-gray-700 mb-8">
-        Consulta nuestros informes y reportes de servicio. Estamos aquí para ayudarte.
-      </p>
-
-      {/* Secciones lado a lado */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl w-full p-12">
-        {/* Sección de Recepción de Muestra */}
+    <div className="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center justify-center px-4 py-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full">
+        
+        {/* Sección de texto */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-gray-100 p-10 rounded-lg shadow-lg"
+          className="flex flex-col justify-center px-2"
         >
-          <h2 className="text-3xl font-semibold text-blue-900 flex items-center mb-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-8 w-8 mr-3 text-blue-900"
-            >
-              <path d="M21 7 6.82 21.18a2.83 2.83 0 0 1-3.99-.01a2.83 2.83 0 0 1 0-4L17 3" />
-              <path d="m16 2 6 6" />
-              <path d="M12 16H4" />
-            </svg>
-            Recepción de Muestras
-          </h2>
-          <p className="text-base mb-4">
-            En caso requiera comunicación inmediata, comuníquese vía WhatsApp:{" "}
-            <a
-              href="https://wa.me/+51941678446"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-blue-600"
-            >
-              941678446
-            </a>
+          <h1 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            Solicita una Cotización
+          </h1>
+          <p className="text-base text-gray-700 mb-3 leading-relaxed">
+            En <span className="font-semibold text-blue-900">AUROLAB</span>, estamos comprometidos en ofrecerte soluciones personalizadas para tus necesidades. Completa el formulario con tus datos y los detalles del servicio que necesitas.
           </p>
-          <p className="text-base mb-6">
-            Envía tu solicitud de cotización al siguiente correo:{" "}
-            <a
-              href="mailto:comercial@aurolab.com.pe"
-              className="text-blue-900 underline"
-            >
-              comercial@aurolab.com.pe
-            </a>
+          <p className="text-base text-gray-700 leading-relaxed">
+            Nuestro equipo de especialistas se pondrá en contacto contigo lo antes posible para brindarte la mejor atención y asesoramiento.
           </p>
-          <h3 className="text-2xl font-semibold text-blue-900 flex items-center mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-8 w-8 mr-3 text-blue-900"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 8 10" />
-            </svg>
-            Horario de Atención
-          </h3>
-          <ul className="space-y-3 text-base">
-            <li>
-              <span className="font-medium text-gray-700">Lunes a viernes:</span>{" "}
-              9:00 - 18:00
-            </li>
-            <li>
-              <span className="font-medium text-gray-700">Sábado:</span> 9:00 - 13:00
-            </li>
-            <li>
-              <span className="font-medium text-gray-700">Domingo:</span> Cerrado
-            </li>
-            <li>
-              <span className="font-medium text-gray-700">
-                Actividades 24/7:
-              </span>{" "}
-              Algunas actividades que requieren cadena de frío o tienen límite de
-              caducidad.
-            </li>
-          </ul>
-        </motion.div>
+          <p className="text-base text-gray-700 mt-4">
+            <span className="font-semibold text-blue-900">¿Tienes dudas?</span> No dudes en escribirnos, estamos aquí para ayudarte.
+          </p>
 
-        {/* Sección de Visítanos */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-100 p-10 rounded-lg shadow-lg"
-        >
-          <h3 className="text-3xl font-semibold text-blue-900 mb-6 text-center">Visítanos</h3>
-          <p className="text-lg mb-8 text-center">
-            Estamos en la Avenida Canadá, entre la calle RosaLuz y la calle Santa
-            Rosa. ¡Esperamos verte pronto!
-          </p>
-          <div className="grid grid-cols-1 gap-6">
-            {/* Mapa de Google Maps */}
-            <div className="rounded-lg overflow-hidden shadow-md">
+          {/* Mapa */}
+          <div className="mt-8">
+            <h2 className="text-xl font-bold text-blue-900 mb-3">Estamos en</h2>
+            <div className="w-full h-56 rounded-lg overflow-hidden shadow-md">
               <iframe
-                title="Google Maps"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.1234567890123!2d-76.9945678!3d-12.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1234567890abcdef%3A0xabcdef1234567890!2sAvenida%20Canad%C3%A1%2C%20Lima!5e0!3m2!1ses!2spe!4v1234567890123"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509374!2d-122.4194154846815!3d37.77492977975962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f0b1b1b1%3A0x2b0b1b1b1b1b1b1b!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1616161616161!5m2!1sen!2s"
                 width="100%"
-                height="300"
+                height="100%"
                 style={{ border: 0 }}
-                allowFullScreen=""
+                allowFullScreen={true}
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación de AUROLAB"
               ></iframe>
             </div>
           </div>
+        </motion.div>
+
+        {/* Formulario de contacto */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="bg-white p-6 md:p-8 rounded-xl shadow-lg"
+        >
+          <form className="space-y-4 text-sm">
+            {[
+              { id: "fullName", label: "Nombres y Apellidos", placeholder: "Ingresa tus nombres y apellidos", type: "text" },
+              { id: "company", label: "Empresa", placeholder: "Ingresa el nombre de tu empresa", type: "text" },
+              { id: "position", label: "Cargo", placeholder: "Ingresa tu cargo", type: "text" },
+              { id: "ruc", label: "RUC", placeholder: "Ingresa el RUC de tu empresa", type: "text" },
+              { id: "phone", label: "Celular de Contacto", placeholder: "Ingresa tu número de celular", type: "tel" },
+              { id: "email", label: "Correo Electrónico", placeholder: "Ingresa tu correo electrónico", type: "email" },
+            ].map(({ id, label, placeholder, type }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block font-medium text-gray-700">
+                  {label}
+                </label>
+                <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder}
+                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  required
+                />
+              </div>
+            ))}
+
+            {/* Servicios */}
+            <div>
+              <label htmlFor="services" className="block font-medium text-gray-700">
+                ¿Qué servicios necesitas?
+              </label>
+              <select
+                id="services"
+                name="services"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                required
+              >
+                <option value="">Seleccionar</option>
+                <option value="analisis-ambiental">Análisis Ambientales</option>
+                <option value="asesoria-tecnica">Asesoría Técnica</option>
+                <option value="capacitaciones">Capacitaciones</option>
+                <option value="gestion-contingengencias">Gestión de Contingencias</option>
+                <option value="monitoreo-ocupacional">Monitoreo Ocupacional</option>
+                <option value="planificacion-logistica">Planificación Logística</option>
+              </select>
+            </div>
+
+            {/* Información Referencial */}
+            <div>
+              <label htmlFor="referenceInfo" className="block font-medium text-gray-700">
+                Información Referencial del Servicio
+              </label>
+              <textarea
+                id="referenceInfo"
+                name="referenceInfo"
+                rows={3}
+                placeholder="Escribe información adicional sobre el servicio que necesitas"
+                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                required
+              ></textarea>
+            </div>
+
+            {/* Botón de envío */}
+            <div className="text-center pt-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                className="w-full bg-blue-600 text-white font-semibold py-2 rounded-md shadow hover:bg-blue-700 transition-all duration-300 text-sm"
+              >
+                Quiero una Cotización
+              </motion.button>
+            </div>
+          </form>
         </motion.div>
       </div>
     </div>

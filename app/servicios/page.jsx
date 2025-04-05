@@ -1,8 +1,13 @@
 'use client';
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Servicios() {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Forzar el scroll al inicio de la página
+  }, []);
+
   return (
     <section className="relative w-full min-h-screen bg-gray-50 py-20 px-6">
       <div className="container mx-auto max-w-6xl">
