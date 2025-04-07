@@ -31,9 +31,6 @@ export default function Contacto() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "Content-Type",
-          "Access-Control-Allow-Methods": "POST",
         },
         body: JSON.stringify(formData),
       });
