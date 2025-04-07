@@ -19,7 +19,7 @@ export default function Servicios() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-gray-900">
-            Nuestros <span className="text-blue-600">Servicios</span>
+            NUESTROS  <span className="text-blue-600">SERVICIOS</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4"></div>
         </motion.div>

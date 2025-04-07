@@ -6,7 +6,8 @@ export default function PresentacionAurolab() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-white">
       {/* Hero section con imagen de fondo */}
-      <div className="relative h-[60vh] w-full">
+      <div className="relative h-[60vh] w-full"
+      style={{ clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)' }}>
         <Image
           src="/home-fondo3.jpg" // Imagen del laboratorio o equipo de trabajo
           alt="Laboratorios Aurolab"
@@ -46,7 +47,7 @@ export default function PresentacionAurolab() {
             transition={{ duration: 0.8 }}
             className="text-lg md:text-xl text-gray-700 leading-relaxed"
           >
-            <strong>AUROLABORATORIO E INGENIERÍA S.A.C.</strong> es una empresa privada que ofrece servicios especializados de muestreo, monitoreo y análisis de muestras ambientales y ocupacionales, orientados a sectores como el industrial, minero-metalúrgico, hidrocarburos, agroindustrial, pesquero, entre otros.
+            <strong>AUROLABORATORIO E INGENIERÍA S.A.C.</strong> En AuroLaboratorio brindamos soluciones especializadas en muestreo, monitoreo y análisis ambiental y ocupacional, adaptadas a las necesidades del sector industrial, minero, energético, agroindustrial y más.
           </motion.p>
         </div>
       </div>
