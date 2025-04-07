@@ -25,6 +25,7 @@ export default function NosotrosMisionVision() {
   return (
     <section className="w-full overflow-x-hidden bg-white">
       {/* Hero Section - Versión refinada */}
+<<<<<<< Updated upstream
       <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -77,6 +78,61 @@ export default function NosotrosMisionVision() {
       </div>
 
       <div id="visionmision" className="container mx-auto max-w-6xl pt-16">
+=======
+            <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden"
+            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)' }}>
+              <div className="absolute inset-0">
+                <Image
+                  src={heroImages[currentImageIndex]}
+                  alt="Fondo Políticas Aurolab"
+                  fill
+                  className="object-cover transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out"
+                  quality={100}
+                  priority
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-gray-900/80" ></div>
+              
+              <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Nuestra  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-green-300"> Visión y Misión </span>
+                  </h1>
+                  
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="text-xl md:text-2xl text-white/90 font-light mb-8"
+                  >
+                    "Comprometidos con la excelencia ambiental, guiados por una visión sostenible."
+                  </motion.p>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                  >
+                    <a 
+                      href="#politicas" 
+                      className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full hover:bg-white/20 transition-all font-medium"
+                    >
+                      Conocer más
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </a>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+      
+      <div className="container mx-auto max-w-6xl pt-16">
+>>>>>>> Stashed changes
         {/* Título principal con efecto especial */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}

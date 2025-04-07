@@ -25,7 +25,7 @@ export default function Nosotros() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Expertos en Soluciones Ambientales Integrales
+            EXPERTOS EN SOLUCIONES AMBIENTALES INTEGRALES
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}

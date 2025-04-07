@@ -1,291 +1,162 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Ambiental() {
   return (
     <div className="bg-gradient-to-b from-green-50 to-white">
       {/* Hero Section */}
-      <div className="relative text-center p-12 md:p-20 bg-green-800 text-white">
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Monitoreo Ambiental Integral</h1>
-          <p className="text-xl md:text-2xl mb-8">Especialistas en análisis ambiental para la seguridad, calidad y cumplimiento normativo</p>
-          <div className="bg-green-600 inline-block px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition duration-300">
-            Solicitar cotización
-          </div>
+      <section className="relative text-center p-12 md:p-20 bg-green-800 text-white h-[500px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/Nosotros.jpg"
+            alt="Equipo de laboratorio realizando análisis ambientales"
+            fill
+            style={{ objectFit: 'cover' }}
+            quality={100}
+            priority
+          />
         </div>
-      </div>
+        <div className="absolute inset-0 bg-green-900/70"></div>
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+          >
+            MONITOREO AMBIENTAL INTEGRAL
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="text-xl md:text-2xl mb-8"
+          >
+            Especialistas en análisis ambiental para la seguridad, calidad y cumplimiento normativo
+          </motion.p>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="bg-green-600 inline-block px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition duration-300 cursor-pointer"
+          >
+            Solicitar cotización
+          </motion.div>
+        </div>
+      </section>
 
       {/* Introducción */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
-            <Image 
-              src="/images/ambiente-lab.jpg" 
+            <Image
+              src="/monitoreo-ambiental-inicio.jpeg"
               alt="Laboratorio ambiental"
               width={600}
-              height={400}
-              className="rounded-lg shadow-xl"
+              height={350}
+              className="rounded-lg object-cover w-full h-auto scale-100 group-hover:scale-105 transition-transform duration-500"
             />
           </div>
           <div className="md:w-1/2">
             <h2 className="text-3xl font-bold text-green-800 mb-6">🌿 ¿Qué hacemos en Medio Ambiente?</h2>
-            <p className="text-lg mb-6">
+            <p className="text-lg mb-6 text-black">
               Ofrecemos servicios de monitoreo ambiental bajo los más altos estándares técnicos y normativos, con más de <strong>800 parámetros acreditados</strong> por INACAL e IAS, ambos miembros del acuerdo internacional ILAC-MRA.
             </p>
-            <p className="text-lg">
+            <p className="text-lg text-black">
               Cumplimos con los <strong>Estándares de Calidad Ambiental (ECA)</strong> para Agua, Aire, Suelo, Ruido, así como los <strong>Límites Máximos Permisibles (LMP)</strong> y otros reglamentos ambientales nacionales e internacionales.
             </p>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Servicios */}
-      <div className="bg-gray-50 py-16">
+      <section className="bg-gray-50 py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-green-800 mb-12">Nuestros Servicios de Monitoreo</h2>
-          
-          {/* Agua */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-12">
-            <div className="md:flex">
-              <div className="md:w-1/3">
-                <Image 
-                  src="/images/monitoreo-agua.jpg" 
-                  alt="Técnico recolectando muestra de agua"
-                  width={400}
-                  height={300}
-                  className="h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <h3 className="text-2xl font-bold text-green-700 mb-4">Monitoreo de Calidad de Agua</h3>
-                <p className="mb-6">Realizamos análisis físico-químicos, microbiológicos y contaminantes especializados en fuentes naturales, industriales y recreativas.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Parámetros de campo: pH, Conductividad, Temperatura, OD, Salinidad, Caudal, Cloro</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Aniones y cationes (Cromatografía Iónica)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Metales totales y disueltos (ICP-MASA y ICP-OES)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Microbiológico, parasitológico e hidrobiológico</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Análisis en piscinas (amebas)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>TPH: C6-C40 (fracciones)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Pesticidas, COVs, BTEX, PAHs, PCBs, Gasolina, entre otros</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-3xl font-bold text-center text-green-800 mb-16">Nuestros Servicios de Monitoreo</h2>
 
-          {/* Aire */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-12">
-            <div className="md:flex md:flex-row-reverse">
-              <div className="md:w-1/3">
-                <Image 
-                  src="/images/monitoreo-aire.jpg" 
-                  alt="Captadores de aire en azotea"
-                  width={400}
-                  height={300}
-                  className="h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <h3 className="text-2xl font-bold text-green-700 mb-4">Monitoreo de Calidad de Aire</h3>
-                <p className="mb-6">Medimos la presencia de contaminantes en el aire ambiente para garantizar la salud pública y cumplir la normativa vigente.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Material particulado: PM10, PM2.5, PTS</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Gases: SO₂, NO₂, CO, H₂S, O₃</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Metales pesados: Plomo, Mercurio</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Barrido de 33 metales (ICP)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Benceno, NH₃, HCl, COVs, Aniones</span>
-                  </div>
+          {/* Bloques de Servicios */}
+          {[
+            {
+              title: "Monitoreo de Calidad de Agua",
+              description: "Realizamos análisis físico-químicos, microbiológicos y contaminantes especializados en fuentes naturales, industriales y recreativas.",
+              image: "/calidad-agua.jpg",
+              reverse: false,
+              items: [
+                "Parámetros de campo: pH, Conductividad, Temperatura, OD, Salinidad, Caudal, Cloro",
+                "Aniones y cationes (Cromatografía Iónica)",
+                "Metales totales y disueltos (ICP-MASA y ICP-OES)",
+                "Microbiológico, parasitológico e hidrobiológico",
+                "Análisis en piscinas (amebas)",
+                "TPH: C6-C40 (fracciones)",
+                "Pesticidas, COVs, BTEX, PAHs, PCBs, Gasolina, entre otros"
+              ]
+            },
+            {
+              title: "Monitoreo de Calidad de Aire",
+              description: "Medimos la presencia de contaminantes en el aire ambiente para garantizar la salud pública y cumplir la normativa vigente.",
+              image: "/calidad-aire.jpg",
+              reverse: true,
+              items: [
+                "Material particulado: PM10, PM2.5, PTS",
+                "Gases: SO₂, NO₂, CO, H₂S, O₃",
+                "Metales pesados: Plomo, Mercurio",
+                "Barrido de 33 metales (ICP)",
+                "Benceno, NH₃, HCl, COVs, Aniones"
+              ]
+            },
+            {
+              title: "Monitoreo de Suelo, Sedimentos y Lodos",
+              description: "Evaluamos el estado ambiental del suelo a través de análisis integrales que identifican contaminantes y características fisicoquímicas.",
+              image: "/calidad-suelo.jpg",
+              reverse: false,
+              items: [
+                "Metales pesados (33 elementos)",
+                "PCBs, BTEX, COVs, PAHs, Pristanos y Fitanos",
+                "TPH: Fracciones C6–C40",
+                "Cianuro libre, bario, carbono, materia orgánica",
+                "Análisis microbiológicos y fisicoquímicos",
+                "Macrobentos"
+              ]
+            }
+          ].map((servicio, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className="bg-white rounded-2xl shadow-lg mb-12 overflow-hidden transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-l-8 hover:border-green-600"
+            >
+              <div className={`md:flex ${servicio.reverse ? "md:flex-row-reverse" : ""}`}>
+                <div className="md:w-1/3">
+                  <Image
+                    src={servicio.image}
+                    alt={servicio.title}
+                    width={500}
+                    height={350}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="p-8 md:w-2/3">
+                  <h3 className="text-2xl font-bold text-green-700 mb-4">{servicio.title}</h3>
+                  <p className="mb-6 text-black">{servicio.description}</p>
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {servicio.items.map((item, i) => (
+                      <li key={i} className="flex items-start group transition-transform duration-200 hover:scale-105 text-blue-900">
+                        <span className="text-green-600 mr-2 group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300">✔️</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Suelo */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-12">
-            <div className="md:flex">
-              <div className="md:w-1/3">
-                <Image 
-                  src="/images/monitoreo-suelo.jpg" 
-                  alt="Técnico tomando muestra de suelo"
-                  width={400}
-                  height={300}
-                  className="h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <h3 className="text-2xl font-bold text-green-700 mb-4">Monitoreo de Suelo, Sedimentos y Lodos</h3>
-                <p className="mb-6">Evaluamos el estado ambiental del suelo a través de análisis integrales que identifican contaminantes y características fisicoquímicas.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Metales pesados (33 elementos)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>PCBs, BTEX, COVs, PAHs, Pristanos y Fitanos</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>TPH: Fracciones C6–C40</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Cianuro libre, bario, carbono, materia orgánica</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Análisis microbiológicos y fisicoquímicos</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Macrobentos</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Emisiones */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-12">
-            <div className="md:flex md:flex-row-reverse">
-              <div className="md:w-1/3">
-                <Image 
-                  src="/images/monitoreo-emisiones.jpg" 
-                  alt="Equipo de muestreo en chimenea"
-                  width={400}
-                  height={300}
-                  className="h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <h3 className="text-2xl font-bold text-green-700 mb-4">Monitoreo de Emisiones</h3>
-                <p className="mb-6">Medimos contaminantes emitidos por fuentes estacionarias como calderas o chimeneas, usando protocolos reconocidos (EPA, NTP).</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Gases: CO, CO₂, NOx, SO₂, O₂</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Material particulado (EPA 5, AP-42)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Dioxinas y Furanos, COVs</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Metales + Hg (EPA 29)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Azufre pirítico, análisis de filtros</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Ruido */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden mb-12">
-            <div className="md:flex">
-              <div className="md:w-1/3">
-                <Image 
-                  src="/images/monitoreo-ruido.jpg" 
-                  alt="Técnico midiendo ruido"
-                  width={400}
-                  height={300}
-                  className="h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <h3 className="text-2xl font-bold text-green-700 mb-4">Monitoreo de Ruido</h3>
-                <p className="mb-6">Determinamos los niveles sonoros en entornos urbanos, industriales o laborales para evaluar exposición y cumplimiento normativo.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Ruido ambiental (diurno y nocturno)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Ruido continuo</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Ruido ocupacional</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Radiación */}
-          <div className="bg-white rounded-xl shadow-md overflow-hidden">
-            <div className="md:flex md:flex-row-reverse">
-              <div className="md:w-1/3">
-                <Image 
-                  src="/images/monitoreo-radiacion.jpg" 
-                  alt="Antena con medidor EMF"
-                  width={400}
-                  height={300}
-                  className="h-full object-cover"
-                />
-              </div>
-              <div className="p-8 md:w-2/3">
-                <h3 className="text-2xl font-bold text-green-700 mb-4">Monitoreo de Radiación No Ionizante</h3>
-                <p className="mb-6">Verificamos que los niveles de campos electromagnéticos emitidos por diversas fuentes estén dentro de lo permitido.</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Aplicaciones: telecomunicaciones, electricidad, entorno urbano</span>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="text-green-600 mr-2">✔️</span>
-                    <span>Evaluación de cumplimiento con límites seguros</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
-      </div>
+      </section>
 
-      {/* CTA */}
-      <div className="bg-green-800 text-white py-16">
+      {/* CTA Final */}
+      <section className="bg-green-800 text-white py-16">
         <div className="max-w-4xl mx-auto text-center px-6">
           <h2 className="text-3xl font-bold mb-6">¿Necesitas servicios de monitoreo ambiental?</h2>
           <p className="text-xl mb-8">Contáctanos para asesorarte sobre el mejor plan para tus necesidades</p>
@@ -298,7 +169,7 @@ export default function Ambiental() {
             </button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -24,9 +24,9 @@ export default function Acreditaciones() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-6xl font-extrabold tracking-wide bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent flex items-center justify-center gap-3"
+                        className="text-4xl md:text-6xl font-extrabold tracking-wide bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-white flex items-center justify-center gap-3"
                     >
-                        <svg className="w-10 h-10 text-cyan-500" fill="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 21H5a1 1 0 01-.78-1.63L11 10.46V5a1 1 0 112 0v5.46l6.78 8.91A1 1 0 0119 21z" />
                         </svg>
                         Acreditaciones

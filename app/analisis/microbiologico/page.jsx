@@ -1,48 +1,72 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion } from "framer-motion";
 
 export default function AnalisisMicrobiologico() {
   const fila1 = [
     {
       title: "Análisis microbiológicos de agua",
-      icon: "/icons/microbiologico-agua.png",
+      icon: "/analisis.png",
     },
     {
       title: "Análisis microbiológicos de lodos (biosólidos)",
-      icon: "/icons/microbiologico-lodos.png",
+      icon: "/analisis-residuos.png",
     },
     {
       title: "Análisis de agentes biológicos en el aire",
-      icon: "/icons/microbiologico-aire.png",
+      icon: "/analisis.png",
     },
   ];
 
   const fila2 = [
     {
       title: "Análisis microbiológicos de superficies",
-      icon: "/icons/microbiologico-superficies.png",
+      icon: "/analitica.png",
     },
     {
       title: "Análisis microbiológicos en alimentos",
-      icon: "/icons/microbiologico-alimentos.png",
+      icon: "/analisis-de-alimentos.png",
     },
   ];
+
+  const heroImages = [
+    "/home-fondo1.jpg",
+    "/home-fondo2.jpg",
+    "/home-fondo3.jpg",
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="bg-gray-100">
       {/* Hero Section */}
-      <div
-        className="relative w-full h-[400px] md:h-[450px] bg-cover bg-center flex items-center justify-center"
-        style={{
-          backgroundImage: "url('/microbiologico.jpeg')",
-          clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)',
-        }}
-      >
-        <div className="absolute inset-0 bg-blue-900 opacity-30"></div>
-        <div className="relative text-center text-white px-4 max-w-4xl">
+      <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)' }}>
+        <div className="absolute inset-0">
+          <Image
+            src={heroImages[currentImageIndex]}
+            alt="Fondo Análisis Microbiológico"
+            fill
+            className="object-cover object-center"
+            quality={100}
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-gray-900/80"></div>
+        <div className="relative text-center text-white px-4 max-w-4xl z-10">
           <h1 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-lg">
-            ANÁLISIS MICROBIOLÓGICO
+            Análisis Microbiológico
           </h1>
           <p className="text-lg md:text-xl font-light">
             Realizamos análisis microbiológicos especializados para garantizar la calidad y seguridad en diferentes industrias.
@@ -61,7 +85,7 @@ export default function AnalisisMicrobiologico() {
           </p>
         </div>
 
-        {/* Fila 1 - 3 tarjetas centradas */}
+        {/* Fila 1 */}
         <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto mb-10">
           {fila1.map((servicio, index) => (
             <motion.div
@@ -76,7 +100,7 @@ export default function AnalisisMicrobiologico() {
                 <img
                   src={servicio.icon}
                   alt={servicio.title}
-                  className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="w-16 h-16 object-contain"
                 />
               </div>
               <h3 className="text-lg font-semibold text-blue-800">
@@ -86,7 +110,7 @@ export default function AnalisisMicrobiologico() {
           ))}
         </div>
 
-        {/* Fila 2 - 2 tarjetas centradas */}
+        {/* Fila 2 */}
         <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
           {fila2.map((servicio, index) => (
             <motion.div
@@ -101,7 +125,7 @@ export default function AnalisisMicrobiologico() {
                 <img
                   src={servicio.icon}
                   alt={servicio.title}
-                  className="w-16 h-16 object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="w-16 h-16 object-contain"
                 />
               </div>
               <h3 className="text-lg font-semibold text-blue-800">
