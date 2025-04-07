@@ -8,26 +8,26 @@ export default function AnalisisMicrobiologico() {
   const fila1 = [
     {
       title: "Análisis microbiológicos de agua",
-      icon: "/icons/microbiologico-agua.png",
+      icon: "/analisis.png",
     },
     {
       title: "Análisis microbiológicos de lodos (biosólidos)",
-      icon: "/icons/microbiologico-lodos.png",
+      icon: "/analisis-residuos.png",
     },
     {
       title: "Análisis de agentes biológicos en el aire",
-      icon: "/icons/microbiologico-aire.png",
+      icon: "/analisis.png",
     },
   ];
 
   const fila2 = [
     {
       title: "Análisis microbiológicos de superficies",
-      icon: "/icons/microbiologico-superficies.png",
+      icon: "/analitica.png",
     },
     {
       title: "Análisis microbiológicos en alimentos",
-      icon: "/icons/microbiologico-alimentos.png",
+      icon: "/analisis-de-alimentos.png",
     },
   ];
 

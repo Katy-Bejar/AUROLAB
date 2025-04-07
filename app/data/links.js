@@ -76,8 +76,8 @@ export const links = {
     href: "/contacto",
   },
 
-  bolsaTrabajo: {
-    name: "Bolsa de Trabajo",
-    href: "/bolsa-trabajo",
-  },
+  // bolsaTrabajo: {
+  //   name: "Bolsa de Trabajo",
+  //   href: "/bolsa-trabajo",
+  // },
 };
