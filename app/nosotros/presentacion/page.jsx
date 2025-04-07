@@ -228,9 +228,12 @@ export default function PresentacionAurolab() {
             <p className="text-lg max-w-3xl mx-auto mb-6">
               En Aurolab combinamos experiencia técnica con compromiso ambiental para ofrecer resultados confiables que cumplan con los más altos estándares de calidad.
             </p>
-            <button className="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+            <a
+              href="/contacto" // Ruta de la página de contacto
+              className="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg"
+            >
               Contactar a Nuestro Equipo
-            </button>
+            </a>
           </motion.div>
         </div>
       </div>

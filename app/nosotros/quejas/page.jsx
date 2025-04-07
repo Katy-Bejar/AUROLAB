@@ -63,7 +63,7 @@ export default function NosotrosQuejas() {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <a
-                href="#politicas"
+                href="#flujograma"
                 className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full hover:bg-white/20 transition-all font-medium"
               >
                 Conocer más

@@ -54,7 +54,7 @@ export default function NosotrosValores() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-xl md:text-2xl text-white/90 font-light mb-8"
             >
-             "En Aurolab, nuestros valores reflejan el compromiso que tenemos con la calidad, la sostenibilidad y el bienestar colectivo".
+              "En Aurolab, nuestros valores reflejan el compromiso que tenemos con la calidad, la sostenibilidad y el bienestar colectivo".
             </motion.p>
 
             <motion.div
@@ -63,7 +63,7 @@ export default function NosotrosValores() {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               <a
-                href="#politicas"
+                href="#valores"
                 className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-full hover:bg-white/20 transition-all font-medium"
               >
                 Conocer más
@@ -77,7 +77,7 @@ export default function NosotrosValores() {
       </div>
 
       {/* Sección de valores */}
-      <div className="w-full py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
+      <div id="valores" className="w-full py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto max-w-6xl">
           {/* Título principal con efecto especial */}
           <motion.div
@@ -194,16 +194,16 @@ export default function NosotrosValores() {
             </div>
 
             {/* Botón de descarga */}
-            <Link
-              href="/valores-aurolab.pdf"
-              download
+            <a
+              href="/gato_explosion.pdf" // Asegúrate de que el archivo esté en la carpeta "public"
+              download="gato_explosion.pdf" // Nombre del archivo al descargar
               className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-green-500 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-shadow hover:from-blue-700 hover:to-green-600"
             >
               <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               Descargar Valores Completo (PDF)
-            </Link>
+            </a>
             <p className="text-sm text-gray-500 mt-4">Documento oficial en formato PDF</p>
           </motion.div>
         </div>
