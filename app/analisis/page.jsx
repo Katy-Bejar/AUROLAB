@@ -2,168 +2,18 @@
 
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import Link from 'next/link';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function AnalisisLaboratorio() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Configuración para burbujas siempre visibles
-  const bubbles = isClient ? Array.from({ length: 30 }).map((_, i) => ({
-    id: i,
-    size: Math.random() * 80 + 40, // Burbujas grandes (40-120px)
-    left: Math.random() * 100,
-    top: Math.random() * 100, // Posición vertical aleatoria inicial
-    delay: Math.random() * 3,
-    duration: Math.random() * 30 + 30, // Movimiento más lento
-    opacity: Math.random() * 0.6 + 0.4, // Más opacas (0.4-1.0)
-    color: `rgba(${Math.floor(Math.random() * 56 + 150)}, ${Math.floor(Math.random() * 56 + 150)}, 246, 0.6)`, // Azules vibrantes
-    direction: Math.random() > 0.5 ? 1 : -1 // Dirección de movimiento
-  })) : [];
-
-  // Configuración para moléculas grandes
-  const molecules = isClient ? Array.from({ length: 15 }).map((_, i) => ({
-    id: i,
-    size: Math.random() * 50 + 30, // Moléculas más grandes
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    rotate: Math.random() * 360,
-    delay: Math.random() * 5,
-    duration: Math.random() * 40 + 40,
-    type: Math.floor(Math.random() * 3),
-    opacity: Math.random() * 0.5 + 0.5 // Más visibles
-  })) : [];
-
-  // Función para generar moléculas visibles
-  const getMoleculeSVG = (type) => {
-    const colors = [
-      "rgba(59, 130, 246, 0.8)",    // Azul sólido
-      "rgba(100, 200, 255, 0.7)",   // Azul claro
-      "rgba(30, 100, 200, 0.8)"      // Azul oscuro
-    ];
-    
-    const strokeColors = [
-      "rgba(59, 130, 246, 0.6)",
-      "rgba(100, 200, 255, 0.5)",
-      "rgba(30, 100, 200, 0.6)"
-    ];
-    
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const strokeColor = strokeColors[Math.floor(Math.random() * strokeColors.length)];
-    
-    switch(type) {
-      case 0: // Molécula simple grande
-        return (
-          <>
-            <circle cx="50" cy="50" r="12" fill={color} />
-            <circle cx="80" cy="50" r="8" fill={color} />
-            <path d="M50 50 L80 50" stroke={strokeColor} strokeWidth="3" />
-          </>
-        );
-      case 1: // Molécula triangular grande
-        return (
-          <>
-            <circle cx="50" cy="30" r="10" fill={color} />
-            <circle cx="30" cy="70" r="10" fill={color} />
-            <circle cx="70" cy="70" r="10" fill={color} />
-            <path d="M50 30 L30 70 L70 70 Z" stroke={strokeColor} strokeWidth="2.5" fill="none" />
-          </>
-        );
-      case 2: // Molécula compleja grande
-        return (
-          <>
-            <circle cx="50" cy="50" r="15" fill={color} />
-            <circle cx="30" cy="30" r="7" fill={color} />
-            <circle cx="70" cy="30" r="7" fill={color} />
-            <circle cx="30" cy="70" r="7" fill={color} />
-            <circle cx="70" cy="70" r="7" fill={color} />
-            <path d="M50 50 L30 30 M50 50 L70 30 M50 50 L30 70 M50 50 L70 70" 
-                  stroke={strokeColor} strokeWidth="2" />
-          </>
-        );
-      default:
-        return null;
-    }
-  };
 
   return (
-    <main className="bg-blue-100 relative overflow-x-hidden min-h-screen">
-      {/* Fondo animado MUY visible - solo en cliente */}
-      {isClient && (
-        <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-          {/* Capa de degradado azul */}
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-200/40 to-blue-100/20" />
-          
-          {/* Burbujas distribuidas por toda la pantalla */}
-          {bubbles.map((bubble) => (
-            <motion.div
-              key={`bubble-${bubble.id}`}
-              className="absolute rounded-full backdrop-blur-sm"
-              style={{
-                width: `${bubble.size}px`,
-                height: `${bubble.size}px`,
-                left: `${bubble.left}%`,
-                top: `${bubble.top}%`,
-                opacity: bubble.opacity,
-                backgroundColor: bubble.color,
-                boxShadow: `0 0 20px ${bubble.color}`
-              }}
-              animate={{
-                top: `${bubble.top + (Math.random() * 20 - 10)}%`,
-                left: `${bubble.left + (Math.random() * 10 * bubble.direction)}%`,
-                opacity: [bubble.opacity * 0.9, bubble.opacity, bubble.opacity * 0.9],
-                scale: [0.95, 1.05, 0.95]
-              }}
-              transition={{
-                duration: bubble.duration,
-                delay: bubble.delay,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut'
-              }}
-            />
-          ))}
-          
-          {/* Moléculas grandes y visibles */}
-          {molecules.map((molecule) => (
-            <motion.svg
-              key={`molecule-${molecule.id}`}
-              className="absolute"
-              style={{
-                width: `${molecule.size}px`,
-                height: `${molecule.size}px`,
-                left: `${molecule.left}%`,
-                top: `${molecule.top}%`,
-                rotate: `${molecule.rotate}deg`,
-                opacity: molecule.opacity,
-                filter: 'drop-shadow(0 0 5px rgba(59, 130, 246, 0.5))'
-              }}
-              viewBox="0 0 100 100"
-              animate={{
-                x: [0, (Math.random() * 60 - 30), 0],
-                y: [0, (Math.random() * 60 - 30), 0],
-                rotate: [molecule.rotate, molecule.rotate + 180, molecule.rotate + 360],
-                opacity: [molecule.opacity * 0.8, molecule.opacity, molecule.opacity * 0.8]
-              }}
-              transition={{
-                duration: molecule.duration,
-                delay: molecule.delay,
-                repeat: Infinity,
-                repeatType: 'loop',
-                ease: 'easeInOut'
-              }}
-            >
-              {getMoleculeSVG(molecule.type)}
-            </motion.svg>
-          ))}
-        </div>
-      )}
+    <main className="bg-blue-100 relative overflow-x-hidden">
+      {/* Fondo animado */}
+      <AnimatedBackground />
 
       {/* Contenido principal */}
       <div className="relative z-10">

@@ -12,19 +12,23 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className="h-full">
-      <body className="relative min-h-screen">
-        {/* Fondo animado - ahora con clase específica */}
-        <div className="animated-background">
-          <AnimatedBackground />
-        </div>
-        
+      <body className="relative">
         {/* Estructura principal */}
-        <div className="flex flex-col min-h-screen">
+        
+        <div className="flex flex-col min-h-screen relative z-10 bg-white">
           <Navbar />
           
           {/* Contenido principal */}
           <main className="flex-grow">
-            {children}
+            {/* Fondo animado SOLO para el área del main */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+              <AnimatedBackground />
+            </div>
+            
+            {/* Contenido de la página */}
+            <div className="relative z-10">
+              {children}
+            </div>
           </main>
           
           <Footer />

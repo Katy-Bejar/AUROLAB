@@ -1,103 +1,148 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-export default function AnimatedBackground({ children }) {  // <- Acepta children
-  const [particles, setParticles] = useState([]);
+export default function AnimatedBackground() {
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const initialParticles = Array.from({ length: 15 }).map((_, i) => ({  // Reduce el número para mejor rendimiento
-        id: i,
-        x: Math.random() * 100,  // % del contenedor padre (no de window)
-        y: Math.random() * 100,
-        size: Math.random() * 30 + 20,  // Tamaño más pequeño
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        color: `rgba(150, 200, 246, ${Math.random() * 0.3 + 0.2})`,  // Opacidad más baja
-      }));
-      setParticles(initialParticles);
-    }
+    setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    if (particles.length === 0) return;
+  // Configuración para burbujas
+  const bubbles = isClient ? Array.from({ length: 20 }).map((_, i) => ({
+    id: i,
+    size: Math.random() * 60 + 30, // Tamaño reducido para mejor rendimiento
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    delay: Math.random() * 3,
+    duration: Math.random() * 25 + 25,
+    opacity: Math.random() * 0.5 + 0.3,
+    color: `rgba(${Math.floor(Math.random() * 56 + 150)}, ${Math.floor(Math.random() * 56 + 150)}, 246, 0.5)`,
+    direction: Math.random() > 0.5 ? 1 : -1
+  })) : [];
 
-    let animationId;
-    const animateParticles = () => {
-      setParticles(prevParticles => {
-        return prevParticles.map(particle => {
-          let newX = particle.x + particle.vx;
-          let newY = particle.y + particle.vy;
-          let newVx = particle.vx;
-          let newVy = particle.vy;
+  // Configuración para moléculas
+  const molecules = isClient ? Array.from({ length: 10 }).map((_, i) => ({
+    id: i,
+    size: Math.random() * 40 + 20,
+    left: Math.random() * 100,
+    top: Math.random() * 100,
+    rotate: Math.random() * 360,
+    delay: Math.random() * 5,
+    duration: Math.random() * 30 + 30,
+    type: Math.floor(Math.random() * 3),
+    opacity: Math.random() * 0.4 + 0.4
+  })) : [];
 
-          // Rebotar en los bordes
-          if (newX < 0 || newX > window.innerWidth) {
-            newVx = -newVx * 0.95;
-            newX = newX < 0 ? 0 : window.innerWidth;
-          }
-          if (newY < 0 || newY > window.innerHeight) {
-            newVy = -newVy * 0.95;
-            newY = newY < 0 ? 0 : window.innerHeight;
-          }
+  // Función para generar moléculas
+  const getMoleculeSVG = (type) => {
+    const colors = ["rgba(59, 130, 246, 0.7)", "rgba(100, 200, 255, 0.6)", "rgba(30, 100, 200, 0.7)"];
+    const color = colors[type];
+    const strokeColor = color.replace(/[\d\.]+\)$/, '0.5)');
 
-          return {
-            ...particle,
-            x: newX,
-            y: newY,
-            vx: newVx,
-            vy: newVy
-          };
-        });
-      });
-      animationId = requestAnimationFrame(animateParticles);
-    };
+    switch(type) {
+      case 0: return (
+        <>
+          <circle cx="50" cy="50" r="10" fill={color} />
+          <circle cx="80" cy="50" r="6" fill={color} />
+          <path d="M50 50 L80 50" stroke={strokeColor} strokeWidth="2.5" />
+        </>
+      );
+      case 1: return (
+        <>
+          <circle cx="50" cy="30" r="8" fill={color} />
+          <circle cx="30" cy="70" r="8" fill={color} />
+          <circle cx="70" cy="70" r="8" fill={color} />
+          <path d="M50 30 L30 70 L70 70 Z" stroke={strokeColor} strokeWidth="2" fill="none" />
+        </>
+      );
+      case 2: return (
+        <>
+          <circle cx="50" cy="50" r="12" fill={color} />
+          <circle cx="30" cy="30" r="5" fill={color} />
+          <circle cx="70" cy="30" r="5" fill={color} />
+          <circle cx="30" cy="70" r="5" fill={color} />
+          <circle cx="70" cy="70" r="5" fill={color} />
+          <path d="M50 50 L30 30 M50 50 L70 30 M50 50 L30 70 M50 50 L70 70" 
+                stroke={strokeColor} strokeWidth="1.8" />
+        </>
+      );
+      default: return null;
+    }
+  };
 
-    animationId = requestAnimationFrame(animateParticles);
+  if (!isClient) return null;
 
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, [particles.length]);
-
-  
   return (
-    <div className="relative w-full h-full overflow-hidden">  {/* Contenedor relativo */}
-      {/* Fondo animado */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full backdrop-blur-sm"
-            style={{
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              left: `${particle.x}%`,  // Usa % para que sea relativo al padre
-              top: `${particle.y}%`,
-              backgroundColor: particle.color,
-              boxShadow: `0 0 10px ${particle.color}`,
-            }}
-            animate={{
-              x: [`${particle.x}%`, `${particle.x + particle.vx}%`],
-              y: [`${particle.y}%`, `${particle.y + particle.vy}%`],
-              scale: [0.9, 1.1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none" 
+         style={{ height: 'calc(100vh - [altura-del-footer])' }}>
+      {/* Capa de degradado azul */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-200/30 to-blue-100/10" />
       
-      {/* Contenido de la sección (children) */}
-      <div className="relative z-10">  {/* Asegura que el contenido esté encima */}
-        {children}
-      </div>
+      {/* Burbujas */}
+      {bubbles.map((bubble) => (
+        <motion.div
+          key={`bubble-${bubble.id}`}
+          className="absolute rounded-full backdrop-blur-sm"
+          style={{
+            width: `${bubble.size}px`,
+            height: `${bubble.size}px`,
+            left: `${bubble.left}%`,
+            top: `${bubble.top}%`,
+            opacity: bubble.opacity,
+            backgroundColor: bubble.color,
+            boxShadow: `0 0 15px ${bubble.color}`
+          }}
+          animate={{
+            top: `${bubble.top + (Math.random() * 15 - 7.5)}%`,
+            left: `${bubble.left + (Math.random() * 8 * bubble.direction)}%`,
+            opacity: [bubble.opacity * 0.9, bubble.opacity, bubble.opacity * 0.9],
+            scale: [0.95, 1.05, 0.95]
+          }}
+          transition={{
+            duration: bubble.duration,
+            delay: bubble.delay,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut'
+          }}
+        />
+      ))}
+      
+      {/* Moléculas */}
+      {molecules.map((molecule) => (
+        <motion.svg
+          key={`molecule-${molecule.id}`}
+          className="absolute"
+          style={{
+            width: `${molecule.size}px`,
+            height: `${molecule.size}px`,
+            left: `${molecule.left}%`,
+            top: `${molecule.top}%`,
+            rotate: `${molecule.rotate}deg`,
+            opacity: molecule.opacity,
+            filter: 'drop-shadow(0 0 4px rgba(59, 130, 246, 0.4))'
+          }}
+          viewBox="0 0 100 100"
+          animate={{
+            x: [0, (Math.random() * 40 - 20), 0],
+            y: [0, (Math.random() * 40 - 20), 0],
+            rotate: [molecule.rotate, molecule.rotate + 180, molecule.rotate + 360],
+            opacity: [molecule.opacity * 0.8, molecule.opacity, molecule.opacity * 0.8]
+          }}
+          transition={{
+            duration: molecule.duration,
+            delay: molecule.delay,
+            repeat: Infinity,
+            repeatType: 'loop',
+            ease: 'easeInOut'
+          }}
+        >
+          {getMoleculeSVG(molecule.type)}
+        </motion.svg>
+      ))}
     </div>
   );
 }

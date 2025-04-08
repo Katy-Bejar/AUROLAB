@@ -1,13 +1,16 @@
 'use client';
 import Image from "next/image";
 import { motion } from "framer-motion";
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function Nosotros() {
   return (
     <section className="w-full overflow-x-hidden bg-white">
+      {/* Fondo animado */}
+      <AnimatedBackground />
       {/* SECCIÓN PRINCIPAL CON IMAGEN DE FONDO */}
       <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/Nosotros.jpg"
             alt="Equipo de laboratorio realizando análisis ambientales"
@@ -41,6 +44,7 @@ export default function Nosotros() {
 
       {/* SECCIÓN DE SERVICIOS */}
       <div className="container mx-auto px-6 py-16">
+        
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -96,7 +100,7 @@ const ServiceCard = ({ index, service }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="bg-white p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow hover:border-blue-200 group"
+    className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow hover:border-blue-200 group"
   >
     <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
       <svg className="w-6 h-6 text-blue-600 group-hover:text-blue-800 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +119,7 @@ const CertificationCard = ({ index, cert }) => (
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, margin: "-50px" }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="bg-white p-6 rounded-lg shadow-md text-center min-w-[200px] flex flex-col items-center hover:shadow-lg transition-shadow"
+    className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-md text-center min-w-[200px] flex flex-col items-center hover:shadow-lg transition-shadow"
   >
     <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
       <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -31,7 +31,6 @@ export default function Home() {
   return (
     <main className="bg-gray-100 overflow-x-hidden">
       {/* Hero Section con cambio automático */}
-      <AnimatedBackground> {/* 👈 Envuelve el Hero */}
       <div
         className="relative w-full h-[400px] md:h-[600px] lg:h-[900px] bg-cover bg-center flex items-center justify-center transition-all duration-1000"
         style={{
@@ -67,7 +66,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      </AnimatedBackground>
+  
 
       {/* Servicios */}
       <div className="container mx-auto mt-12 px-4 bg-white/80 backdrop-blur-sm rounded-lg">
