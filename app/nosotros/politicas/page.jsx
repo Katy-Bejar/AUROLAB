@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -44,7 +45,10 @@ export default function NosotrosPoliticas() {
   return (
     <section className="w-full overflow-x-hidden bg-white">
       {/* Hero Section */}
-      <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      <div
+        className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden"
+        style={{ clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)' }}
+      >
         <div className="absolute inset-0">
           <Image
             src={heroImages[currentImageIndex]}

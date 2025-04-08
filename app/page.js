@@ -1,5 +1,5 @@
 'use client';
-
+import AnimatedBackground from '@/components/AnimatedBackground';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
@@ -31,6 +31,7 @@ export default function Home() {
   return (
     <main className="bg-gray-100 overflow-x-hidden">
       {/* Hero Section con cambio automático */}
+      <AnimatedBackground> {/* 👈 Envuelve el Hero */}
       <div
         className="relative w-full h-[400px] md:h-[600px] lg:h-[900px] bg-cover bg-center flex items-center justify-center transition-all duration-1000"
         style={{
@@ -66,9 +67,10 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      </AnimatedBackground>
 
       {/* Servicios */}
-      <div className="container mx-auto mt-12 px-4">
+      <div className="container mx-auto mt-12 px-4 bg-white/80 backdrop-blur-sm rounded-lg">
         <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase">
           Atención a Nivel Nacional
         </h2>
@@ -136,7 +138,7 @@ export default function Home() {
       </div>
 
       {/* Sección Adicional */}
-      <div className="max-w-6xl mx-auto p-4 md:p-6 text-center mt-16" ref={serviciosRef}>
+      <div className="max-w-6xl mx-auto p-4 md:p-6 text-center mt-16 bg-white/80 backdrop-blur-sm rounded-lg" ref={serviciosRef}>
         <h2 className="text-center text-2xl md:text-3xl font-bold text-blue-700 uppercase mb-8">
           ACREDITACIONES
         </h2>
