@@ -1,14 +1,14 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer/lib/react-pdf.browser.es.js';
+import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-// Cargar PDFViewer dinámicamente
+// Importación corregida del PDFViewer
 const PDFViewer = dynamic(
-  () => import('@react-pdf/renderer/lib/react-pdf.browser.es.js').then(mod => mod.PDFViewer),
+  () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
   { 
     ssr: false,
     loading: () => <div className="flex items-center justify-center h-full">Cargando PDF...</div>
