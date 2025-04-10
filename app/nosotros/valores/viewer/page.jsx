@@ -1,18 +1,30 @@
 'use client';
 
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-// Importación corregida del PDFViewer
+// Carga dinámica con SSR desactivado
 const PDFViewer = dynamic(
   () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
   { 
     ssr: false,
-    loading: () => <div className="flex items-center justify-center h-full">Cargando PDF...</div>
+    loading: () => <LoadingPlaceholder />
   }
+);
+
+const LoadingPlaceholder = () => (
+  <div className="flex items-center justify-center h-full bg-gray-50">
+    <div className="text-center p-8">
+      <div className="animate-pulse flex flex-col items-center">
+        <div className="h-12 w-12 bg-blue-200 rounded-full mb-4"></div>
+        <div className="h-4 bg-blue-200 rounded w-3/4 mb-2"></div>
+        <div className="h-4 bg-blue-200 rounded w-1/2"></div>
+      </div>
+    </div>
+  </div>
 );
 
 // Paleta de colores profesional

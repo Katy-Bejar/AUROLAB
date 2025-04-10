@@ -8,16 +8,12 @@ const nextConfig = {
       "lh6.googleusercontent.com"
     ],
   },
-  transpilePackages: ['@react-pdf/renderer'],
-  // Elimina toda la sección experimental y webpack
+  transpilePackages: ['@react-pdf/renderer', 'framer-motion'],
   webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'canvas': false,
-      'encoding': false
-    };
+    config.resolve.alias['@react-pdf/renderer'] = '@react-pdf/renderer/dist/react-pdf.browser.es.js';
     return config;
-  }
+  },
+  staticPageGenerationTimeout: 300
 };
 
 export default nextConfig;
