@@ -1,7 +1,18 @@
 'use client';
-import { PDFViewer, Document, Page, Text, View, StyleSheet, Image, pdf } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Image, pdf } from '@react-pdf/renderer';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
+
+// Cargar PDFViewer dinámicamente solo en el cliente
+const PDFViewer = dynamic(
+  () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
+  { 
+    ssr: false,
+    loading: () => <div className="flex items-center justify-center h-full bg-gray-100">Cargando visor PDF...</div>
+  }
+);
 
 // Paleta de colores profesional
 const colors = {
@@ -11,7 +22,6 @@ const colors = {
   dark: '#1E293B',
   light: '#F8FAFC'
 };
-
 // Estilos premium para el PDF
 const styles = StyleSheet.create({
   page: {
@@ -202,22 +212,21 @@ const ValoresPDF = () => (
 );
 
 export default function PDFViewerPage() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleDownload = async () => {
     try {
-      // Genera el blob del PDF
       const blob = await pdf(<ValoresPDF />).toBlob();
-      
-      // Crea un enlace temporal
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = 'Valores-Aurolab.pdf';
-      
-      // Simula el click
       document.body.appendChild(link);
       link.click();
-      
-      // Limpia
       setTimeout(() => {
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
@@ -264,14 +273,16 @@ export default function PDFViewerPage() {
 
           <div className="p-6">
             <div className="h-[75vh] rounded-xl overflow-hidden bg-gray-50 border border-gray-200 shadow-inner">
-              <PDFViewer 
-                width="100%" 
-                height="100%"
-                showToolbar={true}
-                className="rounded-lg"
-              >
-                <ValoresPDF />
-              </PDFViewer>
+              {isClient && (
+                <PDFViewer 
+                  width="100%" 
+                  height="100%"
+                  showToolbar={true}
+                  className="rounded-lg"
+                >
+                  <ValoresPDF />
+                </PDFViewer>
+              )}
             </div>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
