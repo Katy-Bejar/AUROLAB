@@ -1,27 +1,25 @@
 import Link from 'next/link';
 import { Search } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMenu }) => {
   const hasSubmenu = link.sublinks && link.sublinks.length > 0;
   const [isHovered, setIsHovered] = useState(false);
   const submenuRef = useRef(null);
+  const navItemRef = useRef(null);
   const timeoutRef = useRef(null);
 
   const shouldShowDropdown = isMobile ? isOpen : isHovered;
 
-  // Función para manejar el evento onMouseEnter
-  const handleMouseEnter = () => {
+  // Manejo de hover para desktop (solo en el botón de dropdown)
+  const handleButtonMouseEnter = () => {
     if (!isMobile) {
+      clearTimeout(timeoutRef.current);
       setIsHovered(true);
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
     }
   };
 
-  // Función para manejar el evento onMouseLeave
-  const handleMouseLeave = () => {
+  const handleButtonMouseLeave = () => {
     if (!isMobile) {
       timeoutRef.current = setTimeout(() => {
         setIsHovered(false);
@@ -29,60 +27,90 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMen
     }
   };
 
-  // Función para manejar el evento onMouseEnter del submenú
-  const handleSubmenuMouseEnter = () => {
+  // Manejo de hover para el menú desplegado
+  const handleDropdownMouseEnter = () => {
     if (!isMobile) {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      clearTimeout(timeoutRef.current);
+      setIsHovered(true);
     }
   };
 
-  // Función para manejar el evento onMouseLeave del submenú
-  const handleSubmenuMouseLeave = () => {
+  const handleDropdownMouseLeave = () => {
     if (!isMobile) {
       timeoutRef.current = setTimeout(() => {
         setIsHovered(false);
       }, 200);
     }
   };
+
+  // Cerrar al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navItemRef.current && !navItemRef.current.contains(event.target)) {
+        setIsHovered(false);
+      }
+    };
+
+    if (!isMobile && isHovered) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isHovered, isMobile]);
+
+  // Limpiar timeouts al desmontar
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return (
     <li
       className="relative"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      ref={navItemRef}
     >
       {hasSubmenu ? (
-        <>
-          <div className="flex items-center">
-            {/* Enlace principal */}
+        <div className="flex flex-col">
+          <div className="flex items-center relative">
+            {/* Enlace principal - navega directamente */}
             <Link
               href={link.href || '#'}
-              className="text-blue-900 font-semibold hover:text-[#21CDAD] transition-colors duration-200 flex items-center"
+              className={`text-blue-900 font-semibold hover:text-[#21CDAD] transition-colors duration-200 flex items-center ${
+                isMobile ? 'py-2 px-3' : ''
+              }`}
               onClick={(e) => {
                 if (isMobile) {
-                  // En móviles, navega directamente al hacer clic en el texto
-                  if (typeof closeMobileMenu === 'function') {
-                    closeMobileMenu(); // Cierra el menú móvil
+                  if (!isOpen) {
+                    closeMobileMenu?.();
+                  } else {
+                    e.preventDefault();
                   }
-                } else {
-                  close(); // Cierra el menú en desktop
                 }
               }}
             >
               {link.name}
             </Link>
-            {/* Botón para desplegar el submenú en móviles */}
-            {link.sublinks && link.sublinks.length > 0 && (
+            
+            {/* Botón para desplegar el submenú */}
+            {hasSubmenu && (
               <button
                 onClick={(e) => {
-                  e.preventDefault(); // Evita la navegación
-                  toggle(); // Despliega el submenú
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggle();
                 }}
-                className="ml-1 text-sm focus:outline-none"
+                onMouseEnter={handleButtonMouseEnter}
+                onMouseLeave={handleButtonMouseLeave}
+                className={`ml-1 focus:outline-none ${
+                  isMobile ? 'p-2 text-blue-900' : 'text-blue-700 hover:text-[#21CDAD]'
+                }`}
+                aria-expanded={isOpen}
+                aria-label={`${isOpen ? 'Cerrar' : 'Abrir'} submenú`}
               >
-                ▼
+                {isOpen ? '▲' : '▼'}
               </button>
             )}
           </div>
@@ -93,22 +121,22 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMen
               ref={submenuRef}
               className={`${
                 isMobile
-                  ? 'pl-6 mt-2 space-y-2' // Ajuste de padding para móviles
-                  : 'absolute bg-white shadow-lg mt-2 py-2 w-52 z-50 rounded-lg'
+                  ? 'pl-4 mt-1 space-y-1'
+                  : 'absolute left-0 top-full bg-white shadow-lg mt-1 py-1 w-56 z-50 rounded-md border border-gray-100'
               }`}
-              onMouseEnter={handleSubmenuMouseEnter}
-              onMouseLeave={handleSubmenuMouseLeave}
+              onMouseEnter={handleDropdownMouseEnter}
+              onMouseLeave={handleDropdownMouseLeave}
             >
               {link.sublinks.map((sublink, idx) => (
                 <li key={idx}>
                   <Link
                     href={sublink.href}
-                    className="block px-4 py-2 text-blue-900 font-medium hover:text-[#21CDAD] hover:bg-gray-100 transition-colors duration-200"
+                    className={`block px-4 py-2 text-blue-900 font-medium hover:text-[#21CDAD] ${
+                      isMobile ? 'hover:bg-gray-50' : 'hover:bg-blue-50'
+                    } transition-colors duration-200`}
                     onClick={() => {
-                      close(); // Cierra el menú móvil después de hacer clic
-                      if (typeof closeMobileMenu === 'function') {
-                        closeMobileMenu(); // Cierra el menú móvil
-                      }
+                      close();
+                      closeMobileMenu?.();
                     }}
                   >
                     {sublink.name}
@@ -117,20 +145,24 @@ const NavItem = ({ link, isOpen, toggle, close, isMobile = false, closeMobileMen
               ))}
             </ul>
           )}
-        </>
+        </div>
       ) : link.href === "#cms-search-popup" ? (
-        <a href={link.href} className={link.className}>
-          <Search size={22} className="text-blue-900 hover:text-[#21CDAD] transition-colors duration-200" />
+        <a
+          href={link.href}
+          className="flex items-center p-2 text-blue-900 hover:text-[#21CDAD] transition-colors duration-200"
+          aria-label="Buscar"
+        >
+          <Search size={22} />
         </a>
       ) : (
         <Link
           href={link.href || '#'}
-          className="text-blue-900 font-semibold hover:text-[#21CDAD] transition-colors duration-200"
+          className={`text-blue-900 font-semibold hover:text-[#21CDAD] transition-colors duration-200 ${
+            isMobile ? 'block py-2 px-3' : ''
+          }`}
           onClick={() => {
-            close(); // Cierra el menú móvil después de hacer clic
-            if (typeof closeMobileMenu === 'function') {
-              closeMobileMenu(); // Cierra el menú móvil
-            }
+            close();
+            closeMobileMenu?.();
           }}
         >
           {link.name}
