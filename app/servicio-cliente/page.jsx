@@ -2,10 +2,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaWhatsapp, FaEnvelope, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function ServicioCliente() {
   return (
-    <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <MolecularBackground />
       <div className="max-w-6xl mx-auto">
         {/* Encabezado */}
         <motion.div

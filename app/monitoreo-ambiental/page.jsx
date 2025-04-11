@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function Ambiental() {
   return (
-    <div className="bg-gradient-to-b from-green-50 to-white">
+    <div className="bg-gradient-to-b">
+      <MolecularBackground />
       {/* Hero Section */}
       <section className="relative text-center p-12 md:p-20 bg-green-800 text-white h-[500px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -70,7 +72,7 @@ export default function Ambiental() {
       </section>
 
       {/* Servicios */}
-      <section className="bg-gray-50 py-16">
+      <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center text-green-800 mb-16">Nuestros Servicios de Monitoreo</h2>
 

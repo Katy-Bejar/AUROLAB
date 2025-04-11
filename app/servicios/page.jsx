@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function Servicios() {
   useEffect(() => {
@@ -55,7 +56,8 @@ export default function Servicios() {
   ];
 
   return (
-    <section className="relative w-full min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:py-20">
+    <section className="relative w-full min-h-screen py-16 px-4 sm:px-6 lg:py-20">
+      <MolecularBackground />
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

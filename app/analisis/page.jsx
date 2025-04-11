@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import DynamicLabBackground from "@/components/DynamicLabBackground";
 import { FaFlask, FaMicroscope, FaWater, FaChartLine, FaCertificate, FaArrowRight } from 'react-icons/fa';
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function AnalisisLaboratorio() {
   const sectionRef = useRef(null);
@@ -19,6 +20,7 @@ export default function AnalisisLaboratorio() {
   return (
     <main className="bg-gradient-to-b from-blue-50 to-white relative overflow-x-hidden min-h-screen">
       {/* Contenido principal */}
+      <MolecularBackground />
       <div className="relative z-10">
         {/* Hero Section - Mejorado para mobile */}
         <section

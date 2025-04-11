@@ -1,6 +1,7 @@
 'use client';
 import Image from "next/image";
 import { motion } from "framer-motion";
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function Nosotros() {
   return (

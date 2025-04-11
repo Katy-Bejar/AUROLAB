@@ -1,6 +1,7 @@
 'use client';
 import { motion } from "framer-motion";
 import { useState } from "react";
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
@@ -58,9 +59,10 @@ export default function Contacto() {
   };
 
   return (
-    <div className="bg-gray-100 text-gray-800 min-h-screen flex items-center justify-center px-4">
+    <div className="text-gray-800 min-h-screen flex items-center justify-center px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl w-full">
         {/* Sección de texto */}
+        <MolecularBackground />
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}

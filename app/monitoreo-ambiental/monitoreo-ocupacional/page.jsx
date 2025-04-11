@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import MolecularBackground from '@/components/MolecularBackground';
 
 export default function MonitoreoOcupacional() {
   const heroImages = [
@@ -22,7 +23,8 @@ export default function MonitoreoOcupacional() {
   }, []);
 
   return (
-    <section className="bg-white text-gray-800">
+    <section className="text-gray-800">
+      <MolecularBackground/>
       {/* Hero con fondo dinámico */}
       <div className="relative w-full h-[75vh] flex items-center justify-center overflow-hidden" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%)' }}>
         <div className="absolute inset-0">
@@ -86,7 +88,7 @@ export default function MonitoreoOcupacional() {
       </section>
 
       {/* Parámetros monitoreados */}
-      <section className="bg-blue-50 py-16">
+      <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center text-blue-800 mb-12">
             Parámetros que Evaluamos

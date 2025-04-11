@@ -42,7 +42,7 @@ export default function NosotrosPoliticas() {
   ];
 
   return (
-    <section className="w-full overflow-x-hidden bg-white">
+    <section className="w-full overflow-x-hidden bg-white ">
       {/* Hero Section con iconos coloridos */}
       <div className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
         {/* Fondo con transición */}
